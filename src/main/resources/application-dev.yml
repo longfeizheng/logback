@@ -1,0 +1,8 @@
+server:
+  port: 8081
+#logging:
+#  pattern:
+#    console: "%d - %msg%n"
+##  path: D:/log/
+#  file: D:/log/logback.log
+#  level: debug

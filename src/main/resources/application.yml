@@ -1,8 +1,12 @@
-server:
-  port: 8080
-#logging:
-#  pattern:
-#    console: "%d - %msg%n"
-##  path: D:/log/
-#  file: D:/log/logback.log
-#  level: debug
+spring:
+  profiles:
+    active: dev
+  datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/dbperson
+      username: root
+      password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
