@@ -39,4 +39,9 @@ public class PersonServiceImpl implements PersonService {
     public Person findOne(Integer id) {
         return repository.findOne(id);
     }
+
+    @Override
+    public void delete(Integer id) {
+        repository.delete(id);
+    }
 }

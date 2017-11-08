@@ -1,6 +1,7 @@
 package cn.merryyou.logback.domain;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +17,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Data
+@DynamicUpdate
 public class Person {
 
     @Id

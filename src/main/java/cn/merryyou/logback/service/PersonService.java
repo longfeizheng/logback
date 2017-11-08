@@ -20,4 +20,5 @@ public interface PersonService {
     Person findOne(Integer id);
 
 
+    void delete(Integer id);
 }
