@@ -1,2 +1,1 @@
-# logback
-SpringBoot+logback-spring.xml 基本配置
+# SpringBoot + JPA + mysql (含测试)
