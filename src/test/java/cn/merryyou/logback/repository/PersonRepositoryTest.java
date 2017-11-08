@@ -48,4 +48,13 @@ public class PersonRepositoryTest {
         log.info("【findByAGE】 personList={}",personList);
     }
 
+    @Test
+    public void update() {
+        Person p = new Person();
+        p.setId(1);
+        Person resultPerson = repository.save(p);
+        Assert.assertNotNull(resultPerson);
+        Assert.assertNotNull(resultPerson.getId());
+    }
+
 }
