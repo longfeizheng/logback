@@ -77,7 +77,6 @@ public class PersonController {
         if (StringUtils.isNotBlank(address)) {
             p.setAddress(address);
         }
-        p.setId(id);
         //实体类设置了字段校验
         Person resultPerson = personService.findOne(id);
         BeanUtils.copyProperties(resultPerson, p);
