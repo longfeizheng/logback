@@ -1,8 +1,10 @@
 package cn.merryyou.logback.controller;
 
+import cn.merryyou.logback.converter.PersonForm2Person;
 import cn.merryyou.logback.domain.Person;
 import cn.merryyou.logback.domain.Result;
 import cn.merryyou.logback.exception.PersonException;
+import cn.merryyou.logback.from.PersonForm;
 import cn.merryyou.logback.service.PersonService;
 import cn.merryyou.logback.utils.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -95,10 +97,10 @@ public class PersonController {
      * 新增人员@RequestBody接收
      */
     @PutMapping("/person/2")
-    public Result personAdd2(@RequestBody Person person) throws PersonException {
+    public Result personAdd2(@RequestBody PersonForm person) throws PersonException {
 //        Person resultPerson = personService.findOne(person.getId());
 //        BeanUtils.copyProperties(resultPerson,person);
-        return ResultUtil.success(personService.save(person));
+        return ResultUtil.success(personService.save(PersonForm2Person.convert(person)));
 
     }
 

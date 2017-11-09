@@ -95,7 +95,7 @@ public class PersonControllerTest {
     @Test
     public void testPersonAdd2() throws Exception{
         Person person = new Person();
-        person.setId(2);
+        person.setId(1);
         person.setName("marry");
         String responseString = mvc.perform(put("/person/2")
                 .content(asJsonString(person))
