@@ -50,9 +50,9 @@ public class PersonRepositoryTest {
 
     @Test
     public void update() {
-        Person p = new Person();
-        p.setId(1);
-        Person resultPerson = repository.save(p);
+        Person person = repository.findOne(1);
+        person.setAddress("city");
+        Person resultPerson = repository.save(person);
         Assert.assertNotNull(resultPerson);
         Assert.assertNotNull(resultPerson.getId());
     }
