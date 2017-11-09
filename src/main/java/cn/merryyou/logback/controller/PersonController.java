@@ -98,8 +98,8 @@ public class PersonController {
      */
     @PutMapping("/person/2")
     public Result personAdd2(@RequestBody PersonForm person) throws PersonException {
-//        Person resultPerson = personService.findOne(person.getId());
-//        BeanUtils.copyProperties(resultPerson,person);
+        Person resultPerson = personService.findOne(person.getId());
+        BeanUtils.copyProperties(resultPerson,person);
         return ResultUtil.success(personService.save(PersonForm2Person.convert(person)));
 
     }
