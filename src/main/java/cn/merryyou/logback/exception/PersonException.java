@@ -18,4 +18,9 @@ public class PersonException extends RuntimeException {
         super(resultEnum.getMsg());
         this.code = resultEnum.getCode();
     }
+
+    public PersonException(Integer code, String message) {
+        super(message);
+        this.code = code;
+    }
 }

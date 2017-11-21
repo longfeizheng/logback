@@ -1,5 +1,9 @@
 server:
-  port: 8081
+  port: 8080
+spring:
+  redis:
+    host: 192.168.0.129
+    port: 6379
 #logging:
 #  pattern:
 #    console: "%d - %msg%n"
