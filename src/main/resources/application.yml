@@ -3,10 +3,13 @@ spring:
     active: dev
   datasource:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/dbperson
+      url: jdbc:mysql://10.5.17.67:3306/dbperson
       username: root
       password: admin
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+weixin:
+  appid: wxb962cbf908779e5e
+  appsecret: 01d65e5f44d6e2d777996dc60e94ea58
