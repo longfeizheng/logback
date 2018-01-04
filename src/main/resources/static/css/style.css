@@ -109,7 +109,7 @@ h1.header-w3ls {
     text-align: center;
 	float:left;
 	width:56%;
-	background: url('../images/banner.png') center no-repeat;
+	background: url('/images/banner.png') center no-repeat;
 	background-size: cover ;
 	min-height:690px;
 }
@@ -125,7 +125,7 @@ h1.header-w3ls {
 .w3layouts-right {
     float: left;
     width: 44%;
-	background:url(../images/cut.jpg)no-repeat center;
+	background:url('/images/cut.jpg')no-repeat center;
 	background-size:cover;
     min-height: 690px;
 }
