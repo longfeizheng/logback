@@ -2,7 +2,6 @@ package cn.merryyou.logback.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
@@ -15,12 +14,21 @@ import java.util.Map;
  * @since 1.0
  */
 @Controller
-@RequestMapping("/ftl")
 public class IndexController {
 
-    @GetMapping("/index")
+    @GetMapping(value = {"/index","/"})
     public ModelAndView index(Map<String, String> map) {
-        map.put("test", "hello world!");
+        map.put("test", "hello Security!");
         return new ModelAndView("ftl/index", map);
+    }
+
+    @GetMapping(value = "/login")
+    public ModelAndView login(Map<String, String> map) {
+        return new ModelAndView("ftl/login", map);
+    }
+
+    @GetMapping(value = "/register")
+    public ModelAndView register(Map<String, String> map) {
+        return new ModelAndView("ftl/register", map);
     }
 }

@@ -1,7 +1,6 @@
 package cn.merryyou.logback.schedue;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class Task {
 
-    @Scheduled(cron = "0/10 * * * * ? ")
+    //@Scheduled(cron = "0/10 * * * * ? ")
     public void cron() throws Exception{
         log.info("定时任务执行中。。。。");
     }
