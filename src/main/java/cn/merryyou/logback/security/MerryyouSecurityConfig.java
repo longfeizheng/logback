@@ -1,6 +1,8 @@
 package cn.merryyou.logback.security;
 
+import cn.merryyou.logback.authorize.AuthorizeConfigProvider;
 import cn.merryyou.logback.properties.SecurityConstants;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,6 +15,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @Configuration
 public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private AuthorizeConfigProvider authorizeConfigProvider;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -29,10 +34,11 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/**/*.png",
                 "/**/*.woff2")
                 .permitAll()//以上的请求都不需要认证
-                .anyRequest()//剩下的请求
-                .authenticated()//都需要认证
+                //.antMatchers("/").access("hasRole('USER')")
                 .and()
                 .csrf().disable()//关闭csrd拦截
         ;
+        //安全模块单独配置
+        authorizeConfigProvider.config(http.authorizeRequests());
     }
 }
