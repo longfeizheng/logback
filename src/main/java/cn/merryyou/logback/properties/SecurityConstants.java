@@ -23,4 +23,30 @@ public interface SecurityConstants {
      */
     String DEFAULT_REGISTER_URL = "/authentication/register";
 
+    /**
+     * qq appID
+     */
+    String DEFAULT_SOCIAL_QQ_APP_ID = "101386962";
+
+    /**
+     * qq appsECRET
+     */
+    String DEFAULT_SOCIAL_QQ_APP_SECRET = "2a0f820407df400b84a854d054be8b6a";
+
+    /**
+     *自定义social拦截地址  默认/auth  (SocialAuthenticationFilter)
+     */
+    String DEFAULT_SOCIAL_QQ_PROCESS_URL = "/login";
+
+    /**
+     * 提供商的ID
+     */
+    String DEFAULT_SOCIAL_QQ_PROVIDER_ID = "qq";
+
+    /**
+     * 默认的主页测
+     */
+    String DEFAULT_SIGNUP_URL = "/register";
+
+
 }

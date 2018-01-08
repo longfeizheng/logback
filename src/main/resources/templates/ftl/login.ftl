@@ -55,7 +55,7 @@
                         <span>其它登录方式</span>
                     </div>
                     <div class="right other_right">
-                        <a href="#"><i class="fa fa-qq fa-2x"></i></a>
+                        <a href="/login/qq"><i class="fa fa-qq fa-2x"></i></a>
                         <a href="#"><i class="fa fa-weixin fa-2x"></i></a>
                         <a href="#"><i class="fa fa-weibo fa-2x"></i></a>
                     </div>

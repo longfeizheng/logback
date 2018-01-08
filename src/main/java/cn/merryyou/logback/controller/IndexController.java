@@ -31,4 +31,5 @@ public class IndexController {
     public ModelAndView register(Map<String, String> map) {
         return new ModelAndView("ftl/register", map);
     }
+
 }
