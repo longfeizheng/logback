@@ -41,6 +41,7 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
                 SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM,
                 SecurityConstants.DEFAULT_REGISTER_URL,
                 "/register",
+                "/social/info",
                 "/**/*.js",
                 "/**/*.css",
                 "/**/*.jpg",

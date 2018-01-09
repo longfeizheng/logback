@@ -19,7 +19,7 @@
 						<div class="login_title">
 							注册
 						</div>
-						<form action="#" method="post">
+						<form action="/authentication/register" method="post">
 							
 							<div class="form_text_ipt">
 								<input name="username" type="text" placeholder="手机号/邮箱">
@@ -39,7 +39,7 @@
 							<div class="ececk_warning"><span>验证码不能为空</span></div>
 							
 							<div class="form_btn">
-								<button type="button" onclick="javascript:window.location.href='#'">注册</button>
+								<button type="submit">注册</button>
 							</div>
 							<div class="form_reg_btn">
 								<span>已有帐号？</span><a href="/authentication/login">马上登录</a>

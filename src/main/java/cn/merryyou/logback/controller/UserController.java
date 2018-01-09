@@ -69,7 +69,7 @@ public class UserController {
         return new ModelAndView("ftl/login", map);
     }
 
-    @GetMapping("social/info")
+    @GetMapping("/social/info")
     public @ResponseBody
     SocialUserInfo getSocialUserInfo(HttpServletRequest request) {
         SocialUserInfo userInfo = new SocialUserInfo();

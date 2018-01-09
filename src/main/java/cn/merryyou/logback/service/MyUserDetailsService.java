@@ -29,6 +29,6 @@ public class MyUserDetailsService implements UserDetailsService,SocialUserDetail
 
     @Override
     public SocialUserDetails loadUserByUserId(String userId) throws UsernameNotFoundException {
-        return new SocialUser(userId,"123456", AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
+        return new SocialUser(userId,"123456", AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_ADMIN"));
     }
 }
