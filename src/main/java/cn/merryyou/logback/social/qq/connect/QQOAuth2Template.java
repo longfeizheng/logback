@@ -1,4 +1,4 @@
-package cn.merryyou.logback.social.qq.connet;
+package cn.merryyou.logback.social.qq.connect;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;

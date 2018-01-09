@@ -1,7 +1,7 @@
 package cn.merryyou.logback.social.qq.config;
 
 import cn.merryyou.logback.properties.SecurityConstants;
-import cn.merryyou.logback.social.qq.connet.QQConnectionFactory;
+import cn.merryyou.logback.social.qq.connect.QQConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.social.SocialAutoConfigurerAdapter;
 import org.springframework.context.annotation.Configuration;

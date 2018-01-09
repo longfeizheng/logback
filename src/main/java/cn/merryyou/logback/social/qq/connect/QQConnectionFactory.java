@@ -1,4 +1,4 @@
-package cn.merryyou.logback.social.qq.connet;
+package cn.merryyou.logback.social.qq.connect;
 
 import cn.merryyou.logback.social.qq.api.QQ;
 import org.springframework.social.connect.support.OAuth2ConnectionFactory;
