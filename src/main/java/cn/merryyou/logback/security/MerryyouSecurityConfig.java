@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.social.security.SpringSocialConfigurer;
 
 /**
  * Created on 2018/1/4.
@@ -24,6 +25,9 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private ValidateCodeFilter validateCodeFilter;
 
+    @Autowired
+    private SpringSocialConfigurer merryyouSpringSocialConfigurer;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
@@ -31,9 +35,12 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)//如果请求的URL需要认证则跳转的URL
                 .loginProcessingUrl(SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM)//处理表单中自定义的登录URL
                 .and()
+                .apply(merryyouSpringSocialConfigurer)
+                .and()
                 .authorizeRequests().antMatchers(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
                 SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM,
                 SecurityConstants.DEFAULT_REGISTER_URL,
+                "/register",
                 "/**/*.js",
                 "/**/*.css",
                 "/**/*.jpg",
