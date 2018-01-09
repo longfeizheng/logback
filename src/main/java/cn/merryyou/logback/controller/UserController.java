@@ -7,6 +7,8 @@ import cn.merryyou.logback.utils.StringsUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
@@ -69,6 +71,11 @@ public class UserController {
         return new ModelAndView("ftl/login", map);
     }
 
+    /**
+     * 获取第三方用户信息
+     * @param request
+     * @return
+     */
     @GetMapping("/social/info")
     public @ResponseBody
     SocialUserInfo getSocialUserInfo(HttpServletRequest request) {
@@ -80,6 +87,12 @@ public class UserController {
         userInfo.setHeadImg(connection.getImageUrl());
         return userInfo;
     }
+
+    @GetMapping("/user/me")
+    public Object getCurrentUser1(@AuthenticationPrincipal UserDetails user) {
+        return user;
+    }
+
 
 
 }

@@ -1,5 +1,7 @@
 package cn.merryyou.logback.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,9 +18,9 @@ import java.util.Map;
 @Controller
 public class IndexController {
 
-    @GetMapping(value = {"/index","/"})
-    public ModelAndView index(Map<String, String> map) {
-        map.put("test", "hello Security!");
+    @GetMapping(value = {"/index", "/"})
+    public ModelAndView index(@AuthenticationPrincipal UserDetails userDetails, Map<String, String> map) {
+        map.put("test", "hello " + userDetails.getUsername() + "!");
         return new ModelAndView("ftl/index", map);
     }
 

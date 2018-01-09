@@ -31,7 +31,6 @@ public class SocialConfig extends SocialConfigurerAdapter {
     public SpringSocialConfigurer merryyouSocialSecurityConfig() {
         String filterProcessesUrl = SecurityConstants.DEFAULT_SOCIAL_QQ_PROCESS_URL;
         MerryyouSpringSocialConfigurer configurer = new MerryyouSpringSocialConfigurer(filterProcessesUrl);
-//        configurer.signupUrl("/register");
         return configurer;
     }
 
