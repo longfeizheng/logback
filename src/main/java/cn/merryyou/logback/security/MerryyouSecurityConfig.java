@@ -2,12 +2,11 @@ package cn.merryyou.logback.security;
 
 import cn.merryyou.logback.authorize.AuthorizeConfigProvider;
 import cn.merryyou.logback.properties.SecurityConstants;
-import cn.merryyou.logback.validate.code.ValidateCodeFilter;
+import cn.merryyou.logback.validate.code.ValidateCodeSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.social.security.SpringSocialConfigurer;
 
 /**
@@ -22,20 +21,24 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthorizeConfigProvider authorizeConfigProvider;
 
-    @Autowired
-    private ValidateCodeFilter validateCodeFilter;
 
     @Autowired
     private SpringSocialConfigurer merryyouSpringSocialConfigurer;
 
+    @Autowired
+    private ValidateCodeSecurityConfig validateCodeSecurityConfig;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
+//        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
+        http
                 .formLogin()//使用表单登录，不再使用默认httpBasic方式
                 .loginPage(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)//如果请求的URL需要认证则跳转的URL
                 .loginProcessingUrl(SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM)//处理表单中自定义的登录URL
                 .and()
-                .apply(merryyouSpringSocialConfigurer)
+                .apply(validateCodeSecurityConfig)//验证码拦截
+                .and()
+                .apply(merryyouSpringSocialConfigurer)//社交登录
                 .and()
                 .authorizeRequests().antMatchers(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
                 SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM,
@@ -47,7 +50,7 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/**/*.jpg",
                 "/**/*.png",
                 "/**/*.woff2",
-                "/code/image")
+                "/code/*")
                 .permitAll()//以上的请求都不需要认证
                 //.antMatchers("/").access("hasRole('USER')")
                 .and()

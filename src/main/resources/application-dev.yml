@@ -1,8 +1,8 @@
 server:
-  port: 8080
+  port: 80
 spring:
   redis:
-    host: 192.168.0.129
+    host: 127.0.0.1
     port: 6379
 #logging:
 #  pattern:
@@ -10,3 +10,12 @@ spring:
 ##  path: D:/log/
 #  file: D:/log/logback.log
 #  level: debug
+merryyou:
+  security:
+    code:
+      image:
+        width: 90
+        height: 20
+        length: 4
+        expireIn: 30
+        url: /code/*
