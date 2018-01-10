@@ -21,12 +21,12 @@
                 <form action="/authentication/mobile" method="post">
 
                     <div class="form_text_ipt">
-                        <input name="username" type="text" placeholder="手机号" value="18512345678">
+                        <input name="mobile" type="text" placeholder="手机号" value="18512345678">
                     </div>
                     <div class="ececk_warning"><span>手机号不能为空</span></div>
                     <div class="_warning"><span>${message!''}</span></div>
                     <div class="form_text_ipt">
-                        <input name="password" type="password" placeholder="验证码">
+                        <input name="smsCode" type="smsCode" placeholder="验证码">
                     </div>
                     <div class="ececk_warning"><span>验证码</span></div>
                     </div>
@@ -35,14 +35,14 @@
                             <label><input name="" type="checkbox"> 下次自动登录</label>
                         </div>
                         <div class="right check_right">
-                            <a href="/image/smsCode">发送验证码</a>
+                            <a href="/code/sms?mobile=18512345678">发送验证码</a>
                         </div>
                     </div>
                     <div class="form_btn">
                         <button type="submit">登录</button>
                     </div>
                     <div class="form_reg_btn">
-                        <span>还没有帐号？</span><a href="/authentication/register">马上注册</a>
+                        <span>还没有帐号？</span><a href="/register">马上注册</a>
                     </div>
                 </form>
                 <div class="other_login">
