@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>登录界面</title>
+    <title>短信登录</title>
     <link rel="stylesheet" href="/css/reset.css"/>
     <link rel="stylesheet" href="/css/common.css"/>
     <link rel="stylesheet" href="/css/font-awesome.min.css"/>
@@ -18,41 +18,36 @@
                 <div class="login_title">
                     登录
                 </div>
-                <form action="/authentication/form" method="post">
+                <form action="/authentication/mobile" method="post">
 
                     <div class="form_text_ipt">
-                        <input name="username" type="text" placeholder="手机号/邮箱">
+                        <input name="username" type="text" placeholder="手机号" value="18512345678">
                     </div>
-                    <div class="ececk_warning"><span>手机号/邮箱不能为空</span></div>
+                    <div class="ececk_warning"><span>手机号不能为空</span></div>
                     <div class="_warning"><span>${message!''}</span></div>
                     <div class="form_text_ipt">
-                        <input name="password" type="password" placeholder="密码">
+                        <input name="password" type="password" placeholder="验证码">
                     </div>
-                    <div class="ececk_warning"><span>密码不能为空</span></div>
-                    <div class="form_text_ipt">
-                        <input style="width: 150px;" name="imageCode" type="text" placeholder="验证码">
-                        <img src="/code/image" onclick="javascript:this.src='/code/image?random='+Math.random()">
+                    <div class="ececk_warning"><span>验证码</span></div>
                     </div>
-                    <div class="ececk_warning"><span>验证码不能为空</span></div>
-                    <div class="_warning"><span>${codeMessage!''}</span></div>
                     <div class="form_check_ipt">
                         <div class="left check_left">
                             <label><input name="" type="checkbox"> 下次自动登录</label>
                         </div>
                         <div class="right check_right">
-                            <a href="#">忘记密码</a>
+                            <a href="/image/smsCode">发送验证码</a>
                         </div>
                     </div>
                     <div class="form_btn">
                         <button type="submit">登录</button>
                     </div>
                     <div class="form_reg_btn">
-                        <span>还没有帐号？</span><a href="/register">马上注册</a>
+                        <span>还没有帐号？</span><a href="/authentication/register">马上注册</a>
                     </div>
                 </form>
                 <div class="other_login">
                     <div class="left other_left">
-                        <span>其它登录方式</span>&nbsp;&nbsp;<a href="/authentication/mobilePage">短信登录</a>
+                        <span>其它登录方式</span>
                     </div>
                     <div class="right other_right">
                         <a href="/login/qq"><i class="fa fa-qq fa-2x"></i></a>

@@ -1,5 +1,6 @@
 package cn.merryyou.logback.security;
 
+import cn.merryyou.logback.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import cn.merryyou.logback.authorize.AuthorizeConfigProvider;
 import cn.merryyou.logback.properties.SecurityConstants;
 import cn.merryyou.logback.validate.code.ValidateCodeSecurityConfig;
@@ -21,12 +22,14 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthorizeConfigProvider authorizeConfigProvider;
 
-
     @Autowired
     private SpringSocialConfigurer merryyouSpringSocialConfigurer;
 
     @Autowired
     private ValidateCodeSecurityConfig validateCodeSecurityConfig;
+
+    @Autowired
+    private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -38,11 +41,15 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .apply(validateCodeSecurityConfig)//验证码拦截
                 .and()
+                .apply(smsCodeAuthenticationSecurityConfig)
+                .and()
                 .apply(merryyouSpringSocialConfigurer)//社交登录
                 .and()
                 .authorizeRequests().antMatchers(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
                 SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM,
                 SecurityConstants.DEFAULT_REGISTER_URL,
+                SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_MOBILE,
+                SecurityConstants.DEFAULT_SIGN_IN_URL_MOBILE_PAGE,
                 "/register",
                 "/social/info",
                 "/**/*.js",

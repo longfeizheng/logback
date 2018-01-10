@@ -62,6 +62,13 @@ public class UserController {
         return new ModelAndView("ftl/login", map);
     }
 
+    @GetMapping(SecurityConstants.DEFAULT_SIGN_IN_URL_MOBILE_PAGE)
+    public ModelAndView mobilePage(HttpServletRequest request, HttpServletResponse response, Map<String, Object> map) {
+
+        return new ModelAndView("ftl/mobileLoginPage", map);
+    }
+
+
     @PostMapping(SecurityConstants.DEFAULT_REGISTER_URL)
     public ModelAndView register(@RequestParam("username") String username,
                                  @RequestParam("password") String pasword, HttpServletRequest request, Map<String, Object> map) {
