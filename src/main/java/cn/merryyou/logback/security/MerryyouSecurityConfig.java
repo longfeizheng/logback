@@ -3,12 +3,19 @@ package cn.merryyou.logback.security;
 import cn.merryyou.logback.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import cn.merryyou.logback.authorize.AuthorizeConfigProvider;
 import cn.merryyou.logback.properties.SecurityConstants;
+import cn.merryyou.logback.properties.SecurityProperties;
 import cn.merryyou.logback.validate.code.ValidateCodeSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.social.security.SpringSocialConfigurer;
+
+import javax.sql.DataSource;
 
 /**
  * Created on 2018/1/4.
@@ -18,6 +25,12 @@ import org.springframework.social.security.SpringSocialConfigurer;
  */
 @Configuration
 public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private SecurityProperties securityProperties;
+
+    @Autowired
+    private DataSource dataSource;
 
     @Autowired
     private AuthorizeConfigProvider authorizeConfigProvider;
@@ -30,6 +43,16 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository(){
+        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+        tokenRepository.setDataSource(dataSource);
+        return tokenRepository;
+    }
+
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -44,6 +67,11 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
                 .apply(smsCodeAuthenticationSecurityConfig)
                 .and()
                 .apply(merryyouSpringSocialConfigurer)//社交登录
+                .and()
+                .rememberMe()
+                .tokenRepository(persistentTokenRepository())
+                .tokenValiditySeconds(securityProperties.getRememberMeSeconds())
+                .userDetailsService(userDetailsService)
                 .and()
                 .authorizeRequests().antMatchers(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
                 SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM,

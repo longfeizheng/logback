@@ -37,7 +37,7 @@
                     <div class="_warning"><span>${codeMessage!''}</span></div>
                     <div class="form_check_ipt">
                         <div class="left check_left">
-                            <label><input name="" type="checkbox"> 下次自动登录</label>
+                            <label><input name="remember-me" type="checkbox"> 下次自动登录</label>
                         </div>
                         <div class="right check_right">
                             <a href="#">忘记密码</a>
