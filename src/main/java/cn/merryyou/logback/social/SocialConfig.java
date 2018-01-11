@@ -28,14 +28,14 @@ public class SocialConfig extends SocialConfigurerAdapter {
      */
     @Bean
     public SpringSocialConfigurer merryyouSocialSecurityConfig() {
-        String filterProcessesUrl = SecurityConstants.DEFAULT_SOCIAL_QQ_PROCESS_URL;
-//        String filterProcessesUrl = SecurityConstants.DEFAULT_SOCIAL_WEIXIN_PROCESS_URL;
+        String filterProcessesUrl = SecurityConstants.DEFAULT_SOCIAL_PROCESS_URL;
         MerryyouSpringSocialConfigurer configurer = new MerryyouSpringSocialConfigurer(filterProcessesUrl);
         return configurer;
     }
 
     /**
      * 处理注册流程的工具类
+     *
      * @param factoryLocator
      * @return
      */

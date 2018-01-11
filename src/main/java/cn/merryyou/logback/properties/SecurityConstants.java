@@ -41,12 +41,12 @@ public interface SecurityConstants {
     /**
      * weixin appID
      */
-    String DEFAULT_SOCIAL_WEIXIN_APP_ID = "wxd99431bbff8305a0";
+    String DEFAULT_SOCIAL_WEIXIN_APP_ID = "wxfd6965ab1fc6adb2";
 
     /**
      * weixin appsECRET
      */
-    String DEFAULT_SOCIAL_WEIXIN_APP_SECRET = "60f78681d063590a469f1b297feff3c4";
+    String DEFAULT_SOCIAL_WEIXIN_APP_SECRET = "66bb4566de776ac699ec1dbed0cc3dd1";
 
     /**
      * qq appID
@@ -59,14 +59,9 @@ public interface SecurityConstants {
     String DEFAULT_SOCIAL_QQ_APP_SECRET = "2a0f820407df400b84a854d054be8b6a";
 
     /**
-     *自定义QQ社交social拦截地址  默认/auth  (SocialAuthenticationFilter)
+     *自定义社交social拦截地址  默认/auth  (SocialAuthenticationFilter)
      */
-    String DEFAULT_SOCIAL_QQ_PROCESS_URL = "/login";
-
-    /**
-     *自定义WEIXIN社交social拦截地址  默认/auth  (SocialAuthenticationFilter)
-     */
-    String DEFAULT_SOCIAL_WEIXIN_PROCESS_URL = "/qqLogin";
+    String DEFAULT_SOCIAL_PROCESS_URL = "/login";
 
     /**
      * 提供商的ID

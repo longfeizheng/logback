@@ -19,8 +19,6 @@ import org.springframework.social.oauth2.OAuth2ServiceProvider;
 public class WeixinConnectionFactory extends OAuth2ConnectionFactory<Weixin> {
 
     /**
-     *
-     * @param providerId
      * @param appId
      * @param appSecret
      */
@@ -40,8 +38,8 @@ public class WeixinConnectionFactory extends OAuth2ConnectionFactory<Weixin> {
     }
 
     /* (non-Javadoc)
-	 * @see org.springframework.social.connect.support.OAuth2ConnectionFactory#createConnection(org.springframework.social.oauth2.AccessGrant)
-	 */
+     * @see org.springframework.social.connect.support.OAuth2ConnectionFactory#createConnection(org.springframework.social.oauth2.AccessGrant)
+     */
     public Connection<Weixin> createConnection(AccessGrant accessGrant) {
         return new OAuth2Connection<Weixin>(getProviderId(), extractProviderUserId(accessGrant), accessGrant.getAccessToken(),
                 accessGrant.getRefreshToken(), accessGrant.getExpireTime(), getOAuth2ServiceProvider(), getApiAdapter(extractProviderUserId(accessGrant)));
@@ -61,4 +59,5 @@ public class WeixinConnectionFactory extends OAuth2ConnectionFactory<Weixin> {
     private OAuth2ServiceProvider<Weixin> getOAuth2ServiceProvider() {
         return (OAuth2ServiceProvider<Weixin>) getServiceProvider();
     }
+
 }

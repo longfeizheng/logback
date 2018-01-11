@@ -1,5 +1,6 @@
 package cn.merryyou.logback.social.weixin.connect;
 
+import cn.merryyou.logback.social.weixin.api.Weixin;
 import cn.merryyou.logback.social.weixin.api.impl.WeiXinImpl;
 import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
 
@@ -10,7 +11,7 @@ import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
  * @author zlf
  * @since 1.0
  */
-public class WeixinServiceProvider extends AbstractOAuth2ServiceProvider {
+public class WeixinServiceProvider extends AbstractOAuth2ServiceProvider<Weixin> {
 
     /**
      * 微信获取授权码的url
@@ -26,7 +27,7 @@ public class WeixinServiceProvider extends AbstractOAuth2ServiceProvider {
     }
 
     @Override
-    public Object getApi(String accessToken) {
+    public Weixin getApi(String accessToken) {
         return new WeiXinImpl(accessToken);
     }
 }
