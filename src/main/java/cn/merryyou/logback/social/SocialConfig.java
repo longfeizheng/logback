@@ -1,7 +1,6 @@
 package cn.merryyou.logback.social;
 
 import cn.merryyou.logback.properties.SecurityConstants;
-import cn.merryyou.logback.social.qq.config.MerryyouSpringSocialConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.social.config.annotation.EnableSocial;
@@ -30,6 +29,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
     @Bean
     public SpringSocialConfigurer merryyouSocialSecurityConfig() {
         String filterProcessesUrl = SecurityConstants.DEFAULT_SOCIAL_QQ_PROCESS_URL;
+//        String filterProcessesUrl = SecurityConstants.DEFAULT_SOCIAL_WEIXIN_PROCESS_URL;
         MerryyouSpringSocialConfigurer configurer = new MerryyouSpringSocialConfigurer(filterProcessesUrl);
         return configurer;
     }

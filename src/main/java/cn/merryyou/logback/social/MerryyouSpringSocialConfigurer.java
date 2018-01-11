@@ -1,4 +1,4 @@
-package cn.merryyou.logback.social.qq.config;
+package cn.merryyou.logback.social;
 
 import org.springframework.social.security.SocialAuthenticationFilter;
 import org.springframework.social.security.SpringSocialConfigurer;
