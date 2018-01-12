@@ -59,6 +59,16 @@ public interface SecurityConstants {
     String DEFAULT_SOCIAL_QQ_APP_SECRET = "1d958787a87559bad371c0a9e26eef61";
 
     /**
+     * weibo appID
+     */
+    String DEFAULT_SOCIAL_WEIBO_APP_ID = "491608476";
+
+    /**
+     * weibo appsECRET
+     */
+    String DEFAULT_SOCIAL_WEIBO_APP_SECRET = "b2dd0d4199ddc9d64e75d9dd6007ca82";
+
+    /**
      *自定义社交social拦截地址  默认/auth  (SocialAuthenticationFilter)
      */
     String DEFAULT_SOCIAL_PROCESS_URL = "/login";
