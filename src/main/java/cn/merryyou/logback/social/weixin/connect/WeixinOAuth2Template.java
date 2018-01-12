@@ -15,7 +15,7 @@ import java.nio.charset.Charset;
 import java.util.Map;
 
 /**
- * 完成微信的OAuth2认证流程的模板类
+ * 完成微信的OAuth2认证流程的模板类,国内厂商实现的OAuth2每个都不同, spring默认提供的OAuth2Template适应不了，只能针对每个厂商自己微调。
  * Created on 2018/1/11.
  *
  * @author zlf

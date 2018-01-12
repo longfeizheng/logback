@@ -35,7 +35,7 @@
                             <label><input name="" type="checkbox"> 下次自动登录</label>
                         </div>
                         <div class="right check_right">
-                            <a href="/code/sms?mobile=18512345678">发送验证码</a>
+                            <a href="#" onclick="sendSms()">发送验证码</a>
                         </div>
                     </div>
                     <div class="form_btn">
@@ -51,7 +51,7 @@
                     </div>
                     <div class="right other_right">
                         <a href="/login/qq"><i class="fa fa-qq fa-2x"></i></a>
-                        <a href="/auth/weixin"><i class="fa fa-weixin fa-2x"></i></a>
+                        <a href="/login/weixin"><i class="fa fa-weixin fa-2x"></i></a>
                         <a href="#"><i class="fa fa-weibo fa-2x"></i></a>
                     </div>
                 </div>
@@ -61,5 +61,13 @@
 </div>
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <script type="text/javascript" src="/js/common.js"></script>
+<script>
+    $(function(){
+
+    });
+    function sendSms(){
+        $.get("/code/sms?mobile=18512345678");
+    }
+</script>
 </body>
 </html>

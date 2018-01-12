@@ -5,7 +5,7 @@ import cn.merryyou.logback.social.weixin.api.impl.WeiXinImpl;
 import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
 
 /**
- * 微信的OAuth2流程处理器的提供器
+ * 微信的OAuth2流程处理器的提供器，供spring social的connect体系调用
  * Created on 2018/1/11.
  *
  * @author zlf
