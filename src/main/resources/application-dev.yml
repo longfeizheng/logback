@@ -2,8 +2,11 @@ server:
   port: 80
 spring:
   redis:
-    host: 127.0.0.1
+    host: localhost
     port: 6379
+  session:
+    timeout: 600
+    store-type: redis
 #logging:
 #  pattern:
 #    console: "%d - %msg%n"
