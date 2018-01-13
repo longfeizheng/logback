@@ -15,6 +15,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +39,7 @@ public class PersonController {
     /**
      * 查询所有人员
      */
-    @ApiOperation(value = "获得person列表",notes = "")
+    @ApiOperation(value = "获得person列表", notes = "")
     @GetMapping(value = "/persons")
     public List<Person> getPersons() {
         return personService.findAll();
@@ -47,7 +48,7 @@ public class PersonController {
     /**
      * 添加一个人员
      */
-    @ApiOperation(value = "创建person",notes = "根据Person创建person")
+    @ApiOperation(value = "创建person", notes = "根据Person创建person")
     @ApiImplicitParam(name = "person", value = "person详细实体Person", required = true, dataType = "Person")
     @PostMapping("/person")
     public Result<Person> personAdd(@Valid Person person, BindingResult bindingResult) {
@@ -60,7 +61,7 @@ public class PersonController {
     /**
      * 查询人员
      */
-    @ApiOperation(value="获取person详细信息", notes="根据url的id来获取person详细信息")
+    @ApiOperation(value = "获取person详细信息", notes = "根据url的id来获取person详细信息")
     @ApiImplicitParam(name = "id", value = "personID", required = true, dataType = "Integer")
     @GetMapping("/person/{id}")
     public Person personFindOne(@PathVariable("id") Integer id) {
@@ -70,7 +71,7 @@ public class PersonController {
     /**
      * 更新人员
      */
-    @ApiOperation(value="更新person详细信息", notes="根据url的id来指定更新对象，根据传过来的name,age,address")
+    @ApiOperation(value = "更新person详细信息", notes = "根据url的id来指定更新对象，根据传过来的name,age,address")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "PersonID", required = true, dataType = "Integer"),
             @ApiImplicitParam(name = "name", value = "name", required = true, dataType = "String"),
@@ -101,7 +102,7 @@ public class PersonController {
     /**
      * 删除
      */
-    @ApiOperation(value="删除person", notes="根据url的id来指定删除对象")
+    @ApiOperation(value = "删除person", notes = "根据url的id来指定删除对象")
     @ApiImplicitParam(name = "id", value = "personID", required = true, dataType = "Integer")
     @DeleteMapping("/person/{id}")
     public Result PersonDelete(@PathVariable("id") Integer id) {
@@ -112,14 +113,21 @@ public class PersonController {
     /**
      * 新增人员@RequestBody接收
      */
-    @ApiOperation(value="添加Person", notes="新增Person")
+    @ApiOperation(value = "添加Person", notes = "新增Person")
     @ApiImplicitParam(name = "person", value = "表单PersonForm信息", required = true, dataType = "PersonForm")
     @PutMapping("/person/2")
     public Result personAdd2(@RequestBody PersonForm person) throws PersonException {
         Person resultPerson = personService.findOne(person.getId());
-        BeanUtils.copyProperties(resultPerson,person);
+        BeanUtils.copyProperties(resultPerson, person);
         return ResultUtil.success(personService.save(PersonForm2Person.convert(person)));
 
     }
+
+    @GetMapping("/session/invalid")
+    @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
+    public Result<String> sessionInvalid() {
+        return ResultUtil.error(HttpStatus.UNAUTHORIZED.value(), "session失效");
+    }
+
 
 }

@@ -4,6 +4,7 @@ import cn.merryyou.logback.authentication.mobile.SmsCodeAuthenticationSecurityCo
 import cn.merryyou.logback.authorize.AuthorizeConfigProvider;
 import cn.merryyou.logback.properties.SecurityConstants;
 import cn.merryyou.logback.properties.SecurityProperties;
+import cn.merryyou.logback.session.MerryyounExpiredSessionStrategy;
 import cn.merryyou.logback.validate.code.ValidateCodeSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -73,6 +74,13 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
                 .tokenValiditySeconds(securityProperties.getRememberMeSeconds())
                 .userDetailsService(userDetailsService)
                 .and()
+                .sessionManagement()
+                .invalidSessionUrl("/session/invalid")
+                .maximumSessions(1)//最大session并发数量1
+                .maxSessionsPreventsLogin(true)//阻止最大并发数session之后的登录
+                .expiredSessionStrategy(new MerryyounExpiredSessionStrategy())
+                .and()
+                .and()
                 .authorizeRequests().antMatchers(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
                 SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM,
                 SecurityConstants.DEFAULT_REGISTER_URL,
@@ -80,6 +88,7 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
                 SecurityConstants.DEFAULT_SIGN_IN_URL_MOBILE_PAGE,
                 "/register",
                 "/social/info",
+                "/session/invalid",
                 "/**/*.js",
                 "/**/*.css",
                 "/**/*.jpg",
