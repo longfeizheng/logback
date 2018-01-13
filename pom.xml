@@ -137,6 +137,7 @@
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-web</artifactId>
 		</dependency>
+		<!--新浪微博登录的以来:https://github.com/vergnes/spring-social-weibo-->
 		<dependency>
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-weibo</artifactId>
