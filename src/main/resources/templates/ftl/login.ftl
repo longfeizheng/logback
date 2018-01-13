@@ -21,12 +21,12 @@
                 <form action="/authentication/form" method="post">
 
                     <div class="form_text_ipt">
-                        <input name="username" type="text" placeholder="手机号/邮箱">
+                        <input name="username" type="text" placeholder="手机号/邮箱" value="admin">
                     </div>
                     <div class="ececk_warning"><span>手机号/邮箱不能为空</span></div>
                     <div class="_warning"><span>${message!''}</span></div>
                     <div class="form_text_ipt">
-                        <input name="password" type="password" placeholder="密码">
+                        <input name="password" type="password" placeholder="密码" value="123456">
                     </div>
                     <div class="ececk_warning"><span>密码不能为空</span></div>
                     <div class="form_text_ipt">

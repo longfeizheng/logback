@@ -77,9 +77,14 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .invalidSessionUrl("/session/invalid")
                 .maximumSessions(1)//最大session并发数量1
-                .maxSessionsPreventsLogin(true)//阻止最大并发数session之后的登录
+                .maxSessionsPreventsLogin(false)//之后的登录踢掉之前的登录
                 .expiredSessionStrategy(new MerryyounExpiredSessionStrategy())
                 .and()
+                .and()
+                .logout()
+                .logoutUrl("/signOut")//默认退出地址/logout
+                .logoutSuccessUrl("/register")//退出之后跳转到注册页面
+                .deleteCookies("JSESSIONID")
                 .and()
                 .authorizeRequests().antMatchers(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
                 SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM,
