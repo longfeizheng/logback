@@ -22,19 +22,29 @@ import java.io.IOException;
  */
 public class SmsCodeAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
+    /**
+     * request中必须含有mobile参数
+     */
     private String mobileParameter = SecurityConstants.DEFAULT_PARAMETER_NAME_MOBILE;
+    /**
+     * post请求
+     */
     private boolean postOnly = true;
 
     protected SmsCodeAuthenticationFilter() {
+        /**
+         * 处理的手机验证码登录请求处理url
+         */
         super(new AntPathRequestMatcher(SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_MOBILE, "POST"));
     }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
+        //判断是是不是post请求
         if (postOnly && !request.getMethod().equals("POST")) {
             throw new AuthenticationServiceException("Authentication method not supported: " + request.getMethod());
         }
-
+        //从请求中获取手机号码
         String mobile = obtainMobile(request);
 
         if (mobile == null) {
@@ -42,12 +52,12 @@ public class SmsCodeAuthenticationFilter extends AbstractAuthenticationProcessin
         }
 
         mobile = mobile.trim();
-
+        //创建SmsCodeAuthenticationToken(未认证)
         SmsCodeAuthenticationToken authRequest = new SmsCodeAuthenticationToken(mobile);
 
-        // Allow subclasses to set the "details" property
+        //设置用户信息
         setDetails(request, authRequest);
-
+        //返回Authentication实例
         return this.getAuthenticationManager().authenticate(authRequest);
     }
 

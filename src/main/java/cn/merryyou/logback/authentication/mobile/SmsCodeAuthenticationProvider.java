@@ -21,13 +21,13 @@ public class SmsCodeAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         SmsCodeAuthenticationToken authenticationToken = (SmsCodeAuthenticationToken) authentication;
-
+        //调用自定义的userDetailsService认证
         UserDetails user = userDetailsService.loadUserByUsername((String) authenticationToken.getPrincipal());
 
         if (user == null) {
             throw new InternalAuthenticationServiceException("无法获取用户信息");
         }
-
+        //如果user不为空重新构建SmsCodeAuthenticationToken（已认证）
         SmsCodeAuthenticationToken authenticationResult = new SmsCodeAuthenticationToken(user, user.getAuthorities());
 
         authenticationResult.setDetails(authenticationToken.getDetails());
@@ -35,6 +35,11 @@ public class SmsCodeAuthenticationProvider implements AuthenticationProvider {
         return authenticationResult;
     }
 
+    /**
+     * 只有Authentication为SmsCodeAuthenticationToken使用此Provider认证
+     * @param authentication
+     * @return
+     */
     @Override
     public boolean supports(Class<?> authentication) {
         return SmsCodeAuthenticationToken.class.isAssignableFrom(authentication);

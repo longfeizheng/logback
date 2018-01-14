@@ -152,11 +152,13 @@
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-web</artifactId>
 		</dependency>
-		<!--新浪微博登录的以来:https://github.com/vergnes/spring-social-weibo-->
+		<!--新浪微博登录的依赖参考:https://github.com/vergnes/spring-social-weibo-->
 		<dependency>
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-weibo</artifactId>
 			<version>1.0.1-SNAPSHOT</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/spring-social-weibo-1.0.1-SNAPSHOT.jar</systemPath>
 		</dependency>
 	</dependencies>
 
