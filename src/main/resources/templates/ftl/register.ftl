@@ -42,7 +42,7 @@
 								<button type="submit">注册</button>
 							</div>
 							<div class="form_reg_btn">
-								<span>已有帐号？</span><a href="/authentication/login">马上登录</a>
+								<span>已有帐号？</span><a href="/">马上登录</a>
 							</div>
 						</form>
 						<div class="other_login">
