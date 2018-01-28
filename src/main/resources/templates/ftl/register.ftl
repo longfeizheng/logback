@@ -3,9 +3,9 @@
 <head>
 		<meta charset="utf-8">
 		<title>注册界面</title>
-		<link rel="stylesheet" href="css/reset.css" />
-		<link rel="stylesheet" href="css/common.css" />
-		<link rel="stylesheet" href="css/font-awesome.min.css" />
+		<link rel="stylesheet" href="${re.contextPath}css/reset.css" />
+		<link rel="stylesheet" href="${re.contextPath}css/common.css" />
+		<link rel="stylesheet" href="${re.contextPath}css/font-awesome.min.css" />
 	</head>
 	<body>
 		<div class="wrap login_wrap">
@@ -50,16 +50,20 @@
 								<span>其它登录方式</span>
 							</div>
 							<div class="right other_right">
-								<a href="/login/qq"><i class="fa fa-qq fa-2x"></i></a>
-								<a href="/login/weixin"><i class="fa fa-weixin fa-2x"></i></a>
-								<a href="/login/weibo"><i class="fa fa-weibo fa-2x"></i></a>
+								<a href="${re.contextPath}/login/qq"><i class="fa fa-qq fa-2x"></i></a>
+								<a href="${re.contextPath}/login/weixin"><i class="fa fa-weixin fa-2x"></i></a>
+								<a href="${re.contextPath}/login/weibo"><i class="fa fa-weibo fa-2x"></i></a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="js/jquery.min.js" ></script>
-		<script type="text/javascript" src="js/common.js" ></script>
+		<script type="text/javascript" src="${re.contextPath}js/jquery.min.js" ></script>
+		<script type="text/javascript" src="${re.contextPath}js/common.js" ></script>
+		<script>
+			$(function(){
+			});
+		</script>
 	</body>
 </html>

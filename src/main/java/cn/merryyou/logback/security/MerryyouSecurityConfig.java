@@ -4,7 +4,6 @@ import cn.merryyou.logback.authentication.mobile.SmsCodeAuthenticationSecurityCo
 import cn.merryyou.logback.authorize.AuthorizeConfigProvider;
 import cn.merryyou.logback.properties.SecurityConstants;
 import cn.merryyou.logback.properties.SecurityProperties;
-import cn.merryyou.logback.session.MerryyounExpiredSessionStrategy;
 import cn.merryyou.logback.validate.code.ValidateCodeSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,8 +11,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.session.InvalidSessionStrategy;
+import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 import org.springframework.social.security.SpringSocialConfigurer;
 
 import javax.sql.DataSource;
@@ -45,6 +48,18 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
 
+    @Autowired
+    private InvalidSessionStrategy invalidSessionStrategy;
+
+    @Autowired
+    private SessionInformationExpiredStrategy sessionInformationExpiredStrategy;
+
+    @Autowired
+    private AuthenticationSuccessHandler merryyouLoginSuccessHandler;
+
+    @Autowired
+    private AuthenticationFailureHandler merryyouAuthenticationfailureHandler;
+
     @Bean
     public PersistentTokenRepository persistentTokenRepository(){
         JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
@@ -62,6 +77,8 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()//使用表单登录，不再使用默认httpBasic方式
                 .loginPage(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)//如果请求的URL需要认证则跳转的URL
                 .loginProcessingUrl(SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM)//处理表单中自定义的登录URL
+                .successHandler(merryyouLoginSuccessHandler)//登录成功处理器，返回JSON
+                .failureHandler(merryyouAuthenticationfailureHandler)//登录失败处理器
                 .and()
                 .apply(validateCodeSecurityConfig)//验证码拦截
                 .and()
@@ -75,10 +92,11 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
                 .userDetailsService(userDetailsService)
                 .and()
                 .sessionManagement()
+//                .invalidSessionStrategy(invalidSessionStrategy)
                 .invalidSessionUrl("/session/invalid")
-                .maximumSessions(1)//最大session并发数量1
-                .maxSessionsPreventsLogin(false)//之后的登录踢掉之前的登录
-                .expiredSessionStrategy(new MerryyounExpiredSessionStrategy())
+                .maximumSessions(securityProperties.getSession().getMaximumSessions())//最大session并发数量1
+                .maxSessionsPreventsLogin(securityProperties.getSession().isMaxSessionsPreventsLogin())//之后的登录踢掉之前的登录
+                .expiredSessionStrategy(sessionInformationExpiredStrategy)
                 .and()
                 .and()
                 .logout()

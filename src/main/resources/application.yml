@@ -3,7 +3,7 @@ spring:
     active: dev
   datasource:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://10.5.17.67:3306/dbperson
+      url: jdbc:mysql://localhost:3306/dbperson
       username: root
       password: admin
   jpa:
@@ -23,4 +23,5 @@ spring:
     expose-spring-macro-helpers: true
     prefer-file-system-access: true
     suffix: .ftl
-    template-loader-path: classpath:/templates/
+    template-loader-path: classpath:/templates/ftl
+    request-context-attribute: re

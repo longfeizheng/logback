@@ -101,4 +101,8 @@ public interface SecurityConstants {
      */
     String DEFAULT_PARAMETER_NAME_MOBILE = "mobile";
 
+    /**
+     * session失效默认的跳转地址
+     */
+    String DEFAULT_SESSION_INVALID_URL = "/merryyou-session-invalid.html";
 }

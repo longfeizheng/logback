@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <title>短信登录</title>
-    <link rel="stylesheet" href="/css/reset.css"/>
-    <link rel="stylesheet" href="/css/common.css"/>
-    <link rel="stylesheet" href="/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="${re.contextPath}/css/reset.css"/>
+    <link rel="stylesheet" href="${re.contextPath}/css/common.css"/>
+    <link rel="stylesheet" href="${re.contextPath}/css/font-awesome.min.css"/>
 </head>
 <body>
 <div class="wrap login_wrap">
@@ -18,7 +18,7 @@
                 <div class="login_title">
                     登录
                 </div>
-                <form action="/authentication/mobile" method="post">
+                <form action="${re.contextPath}/authentication/mobile" method="post">
 
                     <div class="form_text_ipt">
                         <input name="mobile" type="text" placeholder="手机号" value="18512345678">
@@ -50,8 +50,8 @@
                         <span>其它登录方式</span>
                     </div>
                     <div class="right other_right">
-                        <a href="/login/qq"><i class="fa fa-qq fa-2x"></i></a>
-                        <a href="/login/weixin"><i class="fa fa-weixin fa-2x"></i></a>
+                        <a href="${re.contextPath}/login/qq"><i class="fa fa-qq fa-2x"></i></a>
+                        <a href="${re.contextPath}/login/weixin"><i class="fa fa-weixin fa-2x"></i></a>
                         <a href="#"><i class="fa fa-weibo fa-2x"></i></a>
                     </div>
                 </div>

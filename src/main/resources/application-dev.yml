@@ -23,3 +23,8 @@ merryyou:
         length: 4
         expireIn: 30
         url: /code/*
+    session:
+      maximumSessions: 1
+      maxSessionsPreventsLogin: false
+#      sessionInvalidUrl : /merryyou-session-invalid.html
+    loginType: JSON
