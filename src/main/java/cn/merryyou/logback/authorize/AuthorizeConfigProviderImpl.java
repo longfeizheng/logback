@@ -1,5 +1,6 @@
 package cn.merryyou.logback.authorize;
 
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.stereotype.Component;
@@ -12,11 +13,12 @@ import org.springframework.stereotype.Component;
  * @since 1.0
  */
 @Component
+@Order(Integer.MAX_VALUE)
 public class AuthorizeConfigProviderImpl implements AuthorizeConfigProvider {
     @Override
-    public void config(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry configurer) {
-//        configurer.antMatchers("/person/*").hasRole("ADMIN")
-        configurer.antMatchers("/person/*").hasRole("ADMIN")
-        .anyRequest().authenticated();
+    public void config(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry config) {
+        config
+                .anyRequest()
+                .access("@rbacService.hasPermission(request,authentication)");
     }
 }
