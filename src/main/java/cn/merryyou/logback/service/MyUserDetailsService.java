@@ -36,9 +36,11 @@ public class MyUserDetailsService implements UserDetailsService,SocialUserDetail
 
         SysUser user = repository.findByUsername(username);
 //        String password = passwordEncoder.encode("123456");
+
 //        log.info("数据库密码是:password={}",password);
-//        return new User(username,password, AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_ADMIN"));
         return user;
+//        return new User(username,password, AuthorityUtils.commaSeparatedStringToAuthorityList("ADMIN"));
+
     }
 
     @Override

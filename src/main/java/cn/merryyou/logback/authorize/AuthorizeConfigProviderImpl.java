@@ -17,8 +17,11 @@ import org.springframework.stereotype.Component;
 public class AuthorizeConfigProviderImpl implements AuthorizeConfigProvider {
     @Override
     public void config(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry config) {
-        config
-                .anyRequest()
-                .access("@rbacService.hasPermission(request,authentication)");
+//        config.antMatchers("/person/*").access("hasRole('ADMIN') or hasRole('USER')")
+//                .antMatchers("/person/{id}").access("@rbacService.checkUserId(authentication,#id)")
+//                .anyRequest()
+//                .access("@rbacService.hasPermission(request,authentication)");
+//        config.antMatchers("/perons").access("hasRole('ADMIN')").anyRequest().authenticated();
+        config.anyRequest().authenticated();
     }
 }

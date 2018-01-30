@@ -6,11 +6,19 @@ import cn.merryyou.logback.properties.SecurityConstants;
 import cn.merryyou.logback.properties.SecurityProperties;
 import cn.merryyou.logback.validate.code.ValidateCodeSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
@@ -28,6 +36,7 @@ import javax.sql.DataSource;
  * @since 1.0
  */
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -59,16 +68,15 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private AuthenticationFailureHandler merryyouAuthenticationfailureHandler;
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Bean
-    public PersistentTokenRepository persistentTokenRepository(){
+    public PersistentTokenRepository persistentTokenRepository() {
         JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
         tokenRepository.setDataSource(dataSource);
         return tokenRepository;
     }
-
-    @Autowired
-    private UserDetailsService userDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -125,5 +133,33 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
         ;
         //安全模块单独配置
         authorizeConfigProvider.config(http.authorizeRequests());
+    }
+
+    /**
+     * 去除角色中role_的前缀
+     * 表达式需要.access("hasRole('ADMIN')");
+     *
+     * @throws Exception
+     */
+    @Bean
+    GrantedAuthorityDefaults grantedAuthorityDefaults() {
+        return new GrantedAuthorityDefaults(""); // Remove the ROLE_ prefix
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(PasswordEncoder.class)
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 }

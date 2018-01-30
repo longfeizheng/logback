@@ -33,13 +33,13 @@ public class RbacServiceImpl implements RbacService {
         Object principal = authentication.getPrincipal();
 
         boolean hasPermission = false;
-
+        //有可能是匿名的anonymous
         if (principal instanceof SysUser) {
             //admin永远放回true
             if (StringUtils.equals("admin", ((SysUser) principal).getUsername())) {
                 hasPermission = true;
             } else {
-                //读取用户所拥有权限所有的URL
+                //读取用户所拥有权限所有的URL 在这里全部返回true
                 Set<String> urls = new HashSet<>();
 
                 for (String url : urls) {
@@ -51,5 +51,15 @@ public class RbacServiceImpl implements RbacService {
             }
         }
         return hasPermission;
+    }
+
+    /**
+     * 直接返回true
+     * @param authentication
+     * @param id
+     * @return
+     */
+    public boolean checkUserId(Authentication authentication, int id) {
+        return true;
     }
 }
