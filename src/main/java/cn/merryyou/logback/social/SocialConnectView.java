@@ -16,12 +16,16 @@ import java.util.Map;
 public class SocialConnectView extends AbstractView {
     @Override
     protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+        String msg = "";
         response.setContentType("text/html;charset=UTF-8");
-        if (model.get("connection") == null) {
-            response.getWriter().write("<h3>解绑成功</h3>");
+        if (model.get("connections") == null) {
+            msg = "unBindingSuccess";
+//            response.getWriter().write("<h3>解绑成功</h3>");
         } else {
-            response.getWriter().write("<h3>绑定成功</h3>");
+            msg = "bindingSuccess";
+//            response.getWriter().write("<h3>绑定成功</h3>");
         }
+
+        response.sendRedirect("/message/" + msg);
     }
 }

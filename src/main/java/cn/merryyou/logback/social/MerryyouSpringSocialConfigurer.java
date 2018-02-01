@@ -23,7 +23,7 @@ public class MerryyouSpringSocialConfigurer extends SpringSocialConfigurer {
     protected <T> T postProcess(T object) {
         SocialAuthenticationFilter filter = (SocialAuthenticationFilter) super.postProcess(object);
         filter.setFilterProcessesUrl(filterProcessesUrl);
-        filter.setSignupUrl("/register");
+        filter.setSignupUrl("/socialRegister");
         return (T) filter;
     }
 }

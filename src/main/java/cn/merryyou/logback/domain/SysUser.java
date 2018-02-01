@@ -8,7 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.social.security.SocialUserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,7 +26,7 @@ import java.util.Date;
 @Data
 @DynamicInsert
 @DynamicUpdate
-public class SysUser implements Serializable, UserDetails {
+public class SysUser implements Serializable, SocialUserDetails {
     private static final long serialVersionUID = 6531851807610479464L;
     /**
      * 主键
@@ -92,7 +92,7 @@ public class SysUser implements Serializable, UserDetails {
     /**
      * 是否删除，逻辑删除
      */
-    private Byte delFlag;
+    private String delFlag;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -117,5 +117,11 @@ public class SysUser implements Serializable, UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String getUserId() {
+        //使用username 与社交账号的openid关联
+        return username;
     }
 }

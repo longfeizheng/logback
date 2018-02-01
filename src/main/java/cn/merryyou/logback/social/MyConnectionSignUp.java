@@ -1,4 +1,4 @@
-package cn.merryyou.logback.social.qq.connect;
+package cn.merryyou.logback.social;
 
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionSignUp;

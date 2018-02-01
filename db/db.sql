@@ -22,7 +22,7 @@ CREATE TABLE `sys_user` (
   `update_by` varchar(32) DEFAULT NULL,
   `create_date` datetime DEFAULT NULL,
   `update_date` datetime DEFAULT NULL,
-  `del_flag` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0可用1封禁',
+  `del_flag` varchar(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

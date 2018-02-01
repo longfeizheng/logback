@@ -118,7 +118,9 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
                 SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_MOBILE,
                 SecurityConstants.DEFAULT_SIGN_IN_URL_MOBILE_PAGE,
                 "/register",
-                "/social/info",
+                "/socialRegister",//社交账号注册和绑定页面
+                "/user/register",//处理社交注册请求
+                "/social/info",//获取当前社交用户信息
                 "/session/invalid",
                 "/**/*.js",
                 "/**/*.css",

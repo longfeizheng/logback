@@ -1,5 +1,6 @@
 package cn.merryyou.logback.social;
 
+import cn.merryyou.logback.utils.ResultUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ import java.util.Map;
  * @since 1.0
  */
 @Component("connect/status")
-public class SocialConnectionStatusView  extends AbstractView {
+public class SocialConnectionStatusView extends AbstractView {
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -37,6 +38,6 @@ public class SocialConnectionStatusView  extends AbstractView {
         }
 
         response.setContentType("application/json;charset=UTF-8");
-        response.getWriter().write(objectMapper.writeValueAsString(result));
+        response.getWriter().write(objectMapper.writeValueAsString(ResultUtil.success(result)));
     }
 }
