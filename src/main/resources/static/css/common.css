@@ -109,6 +109,15 @@ header{
 	margin: 0 auto;
 	border-bottom: solid 1px #CCCCCC;
 }
+
+.social_title{
+    font-size: 25px;
+    text-align: center;
+    color: #FF7F50;
+    padding: 15px 0;
+    margin: 0 auto;
+    border-bottom: solid 1px #CCCCCC;
+}
 .form_text_ipt{
 	width: 300px;
 	height: 40px;

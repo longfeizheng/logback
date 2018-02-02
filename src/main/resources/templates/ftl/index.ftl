@@ -16,22 +16,17 @@
             <div class="login_form">
                 <div class="login_title">
                 ${username!''}<br/><br/>
-                    <a href="/signOut">退出</a>
-                    <form action="${re.contextPath}/connect/qq" method="post">
-                        <button type="submit">绑定qq</button>
-                    </form>
-                    <form action="${re.contextPath}/connect/weixin" method="post">
-                        <button type="submit">绑定weixin</button>
-                    </form>
-                    <form action="${re.contextPath}/connect/weibo" method="post">
-                        <button type="submit">绑定weibo</button>
+                    <a href="${re.contextPath}/signOut">退出</a>
+                    <form id="bindingQqForm" action="${re.contextPath}/connect/qq" method="post">
+                        <input id="method" type="hidden" name="_method" value="delete"/>
+                        <button id="bindingBut"></button>
                     </form>
                 </div>
                 <div class="other_login">
                     <div class="other_right" style="text-align: center;">
-                        <a id="bindingQq" href=""><i class="fa fa-qq fa-2x"></i></a>
-                        <a href=""><i class="fa fa-weixin fa-2x"></i></a>
-                        <a href=""><i class="fa fa-weibo fa-2x"></i></a>
+                        <a id="bindingQq" href="javascript:void(0)"><i class="fa fa-qq fa-2x"></i></a>
+                        <a href="javascript:void(0)"><i class="fa fa-weixin fa-2x"></i></a>
+                        <a href="javascript:void(0)"><i class="fa fa-weibo fa-2x"></i></a>
                     </div>
                 </div>
             </div>
@@ -52,9 +47,11 @@
                     if (data.data.qq) {
                         //解绑
                         $("#bindingQq").attr("title", "解绑")
+                        $(".fa-qq").addClass("social_title");
                     } else {
                         //绑定
                         $("#bindingQq").attr("title", "绑定")
+                        $(".fa-qq").removeClass("social_title");
                     }
                 }
             },
@@ -70,13 +67,13 @@
             var title = $("#bindingQq").attr("title");
             if ("绑定" === title) {
                 //执行绑定事件
-                <#--$.post("${re.contextPath}/connect/qq");-->
-                alert("绑定！");
-                $("#bindingForm").attr("acction","${re.contextPath}/connect/qq")
-                $("#bindingForm").submit();
+            <#--$.post("${re.contextPath}/connect/qq");-->
+                $("#method").val("post");
+                $("#bindingQqForm").submit();
             } else {
                 //执行解绑事件
-                $.delete("${re.contextPath}/connect/qq");
+                $("#method").val("delete");
+                $("#bindingQqForm").submit();
             }
         });
     });
