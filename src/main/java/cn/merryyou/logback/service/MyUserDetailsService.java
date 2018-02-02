@@ -4,12 +4,10 @@ import cn.merryyou.logback.domain.SysUser;
 import cn.merryyou.logback.repository.SysUserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.social.security.SocialUser;
 import org.springframework.social.security.SocialUserDetails;
 import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.stereotype.Service;
@@ -45,6 +43,11 @@ public class MyUserDetailsService implements UserDetailsService,SocialUserDetail
 
     @Override
     public SocialUserDetails loadUserByUserId(String userId) throws UsernameNotFoundException {
-        return new SocialUser(userId,"123456", AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_ADMIN"));
+        SysUser user = repository.findByUsername(userId);
+//        String password = passwordEncoder.encode("123456");
+
+//        log.info("数据库密码是:password={}",password);
+        return user;
+//        return new SocialUser(userId,"123456", AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_ADMIN"));
     }
 }

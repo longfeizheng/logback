@@ -17,7 +17,7 @@
                 <div class="login_title">
                 ${username!''}<br/><br/>
                     <a href="${re.contextPath}/signOut">退出</a>
-                    <form id="bindingQqForm" action="${re.contextPath}/connect/qq" method="post">
+                    <form id="bindingForm" method="post">
                         <input id="method" type="hidden" name="_method" value="delete"/>
                         <button id="bindingBut"></button>
                     </form>
@@ -25,7 +25,7 @@
                 <div class="other_login">
                     <div class="other_right" style="text-align: center;">
                         <a id="bindingQq" href="javascript:void(0)"><i class="fa fa-qq fa-2x"></i></a>
-                        <a href="javascript:void(0)"><i class="fa fa-weixin fa-2x"></i></a>
+                        <a id="bindingWeixin" href="javascript:void(0)"><i class="fa fa-weixin fa-2x"></i></a>
                         <a href="javascript:void(0)"><i class="fa fa-weibo fa-2x"></i></a>
                     </div>
                 </div>
@@ -53,6 +53,15 @@
                         $("#bindingQq").attr("title", "绑定")
                         $(".fa-qq").removeClass("social_title");
                     }
+                    if (data.data.weixin) {
+                        //解绑
+                        $("#bindingWeixin").attr("title", "解绑")
+                        $(".fa-weixin").addClass("social_title");
+                    } else {
+                        //绑定
+                        $("#bindingWeixin").attr("title", "绑定")
+                        $(".fa-weixin").removeClass("social_title");
+                    }
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -65,15 +74,28 @@
 
         $("#bindingQq").click(function () {
             var title = $("#bindingQq").attr("title");
+            $("#bindingForm").attr("action","${re.contextPath}/connect/qq");
             if ("绑定" === title) {
-                //执行绑定事件
-            <#--$.post("${re.contextPath}/connect/qq");-->
+                //执行绑定炒作
                 $("#method").val("post");
-                $("#bindingQqForm").submit();
+                $("#bindingForm").submit();
             } else {
                 //执行解绑事件
                 $("#method").val("delete");
-                $("#bindingQqForm").submit();
+                $("#bindingForm").submit();
+            }
+        });
+        $("#bindingWeixin").click(function () {
+            var title = $("#bindingWeixin").attr("title");
+            $("#bindingForm").attr("action","${re.contextPath}/connect/weixin");
+            if ("绑定" === title) {
+                //执行绑定炒作
+                $("#method").val("post");
+                $("#bindingForm").submit();
+            } else {
+                //执行解绑事件
+                $("#method").val("delete");
+                $("#bindingForm").submit();
             }
         });
     });
