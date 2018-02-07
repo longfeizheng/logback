@@ -213,26 +213,3 @@ PRIMARY KEY (`id`)
 INSERT INTO `sys_user` VALUES ('7970d8a4-ca43-41bc-af32-5961f870e5bd', 'test', '$2a$10$XL8Mz8X07xgDwK1iF6Lz6OiZdZuhKbJIV.o7.Tn8YcSUppIYDJ82.', null, null, null, null, null, null, null, '2018-02-07 15:59:25', '0');
 INSERT INTO `sys_user` VALUES ('acfc0e9232f54732a5d9ffe9071bf572', 'admin', '$2a$10$GySB750NJDS8xJCdMfhULuBzlNtAYU8Eafkug4d9Yxd1IsrF9dj2y', '24', '', '', '', null, 'acfc0e9232f54732a5d9ffe9071bf572', '2017-12-20 16:34:06', '2018-01-14 14:49:21', '0');
 
--- ----------------------------
--- Table structure for `userconnection`
--- ----------------------------
-DROP TABLE IF EXISTS `userconnection`;
-CREATE TABLE `userconnection` (
-`userId` varchar(255) NOT NULL,
-`providerId` varchar(255) NOT NULL,
-`providerUserId` varchar(255) NOT NULL,
-`rank` int(11) NOT NULL,
-`displayName` varchar(255) DEFAULT NULL,
-`profileUrl` varchar(512) DEFAULT NULL,
-`imageUrl` varchar(512) DEFAULT NULL,
-`accessToken` varchar(512) NOT NULL,
-`secret` varchar(512) DEFAULT NULL,
-`refreshToken` varchar(512) DEFAULT NULL,
-`expireTime` bigint(20) DEFAULT NULL,
-PRIMARY KEY (`userId`,`providerId`,`providerUserId`),
-UNIQUE KEY `UserConnectionRank` (`userId`,`providerId`,`rank`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of userconnection
--- ----------------------------
