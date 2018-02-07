@@ -7,9 +7,10 @@ spring:
       username: root
       password: admin
   jpa:
-    hibernate:
-      ddl-auto: update
     show-sql: true
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
   freemarker:
     allow-request-override: false
     allow-session-override: false

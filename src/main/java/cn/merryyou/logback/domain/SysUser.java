@@ -12,8 +12,7 @@ import org.springframework.social.security.SocialUserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
 
 /**
  * Created on 2018/1/28 0028.
@@ -94,6 +93,10 @@ public class SysUser implements Serializable, SocialUserDetails {
      */
     private String delFlag;
 
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "sys_role_user", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private List<SysRole> roles = new ArrayList<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return AuthorityUtils.commaSeparatedStringToAuthorityList("ADMIN");
@@ -123,5 +126,14 @@ public class SysUser implements Serializable, SocialUserDetails {
     public String getUserId() {
         //使用username 与社交账号的openid关联
         return username;
+    }
+
+    @Override
+    public String toString() {
+        return "SysUser{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

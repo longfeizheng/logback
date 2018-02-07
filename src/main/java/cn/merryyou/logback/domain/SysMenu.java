@@ -5,11 +5,11 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 菜单
@@ -32,8 +32,8 @@ public class  SysMenu implements Serializable {
     )
     private String id;
 
-//    @ManyToMany(mappedBy = "menus")
-//    private Set<SysRole> roles;
+    @ManyToMany(mappedBy = "menus")
+    private List<SysRole> roles = new ArrayList<>();
     /**
      * 名称
      */
@@ -81,8 +81,13 @@ public class  SysMenu implements Serializable {
     private String permission;
 
     private Byte menuType;
-    /**
-     * 菜单排序id 填充菜单展示id
-     */
-    private int num;
+
+
+    @Override
+    public String toString() {
+        return "SysMenu{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

@@ -5,11 +5,11 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 角色
@@ -65,16 +65,24 @@ public class SysRole implements Serializable {
      */
     private Date updateDate;
 
-//
-//    @ManyToMany(mappedBy = "roles")
-//    private Set<SysUser> users;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "sys_role_menu",
-//            joinColumns = @JoinColumn(
-//                    name = "role_id", referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(
-//                    name = "menu_id", referencedColumnName = "id"))
-//    private Set<SysMenu> menus;
+    @ManyToMany(mappedBy = "roles")
+    private List<SysUser> users = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "sys_role_menu",
+            joinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "menu_id", referencedColumnName = "id"))
+    private List<SysMenu> menus = new ArrayList<>();
+
+
+    @Override
+    public String toString() {
+        return "SysRole{" +
+                "id='" + id + '\'' +
+                '}';
+    }
 }

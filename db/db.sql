@@ -1,3 +1,39 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : localhost-mysql
+Source Server Version : 80000
+Source Host           : localhost:3306
+Source Database       : dbperson
+
+Target Server Type    : MYSQL
+Target Server Version : 80000
+File Encoding         : 65001
+
+Date: 2018-02-07 16:01:12
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `persistent_logins`
+-- ----------------------------
+DROP TABLE IF EXISTS `persistent_logins`;
+CREATE TABLE `persistent_logins` (
+`username` varchar(64) NOT NULL,
+`series` varchar(64) NOT NULL,
+`token` varchar(64) NOT NULL,
+`last_used` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+PRIMARY KEY (`series`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of persistent_logins
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `person`
+-- ----------------------------
 DROP TABLE IF EXISTS `person`;
 CREATE TABLE `person` (
 `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -7,50 +43,29 @@ CREATE TABLE `person` (
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
-create table persistent_logins (username varchar(64) not null, series varchar(64) primary key, token varchar(64) not null, last_used timestamp not null);
-
-DROP TABLE IF EXISTS `sys_user`;
-CREATE TABLE `sys_user` (
-  `id` varchar(36) NOT NULL,
-  `username` varchar(64) NOT NULL,
-  `password` varchar(128) NOT NULL,
-  `age` int(4) DEFAULT NULL,
-  `email` varchar(128) DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `real_name` varchar(18) DEFAULT NULL,
-  `create_by` varchar(32) DEFAULT NULL,
-  `update_by` varchar(32) DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `update_date` datetime DEFAULT NULL,
-  `del_flag` varchar(4) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- ----------------------------
+-- Records of person
+-- ----------------------------
+INSERT INTO `person` VALUES ('1', 'city', '22', 'admin');
 
 -- ----------------------------
--- Records of sys_user
--- ----------------------------
-INSERT INTO `sys_user` VALUES ('acfc0e9232f54732a5d9ffe9071bf572', 'admin', '$2a$10$GySB750NJDS8xJCdMfhULuBzlNtAYU8Eafkug4d9Yxd1IsrF9dj2y', '24', '', '', '', null, 'acfc0e9232f54732a5d9ffe9071bf572', '2017-12-20 16:34:06', '2018-01-14 14:49:21', '0');
-
-*/
-
--- ----------------------------
--- Table structure for sys_menu
+-- Table structure for `sys_menu`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu` (
-  `id` varchar(36) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `p_id` varchar(36) DEFAULT NULL,
-  `url` varchar(255) DEFAULT NULL,
-  `order_num` int(4) DEFAULT NULL COMMENT '排序字段',
-  `icon` varchar(255) DEFAULT NULL COMMENT '图标',
-  `create_by` varchar(32) DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `update_by` varchar(32) DEFAULT NULL,
-  `update_date` datetime DEFAULT NULL,
-  `permission` varchar(255) DEFAULT NULL COMMENT '权限',
-  `menu_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1栏目2菜单',
-  PRIMARY KEY (`id`)
+`id` varchar(64) NOT NULL,
+`name` varchar(255) NOT NULL,
+`p_id` varchar(36) DEFAULT NULL,
+`url` varchar(255) DEFAULT NULL,
+`order_num` int(4) DEFAULT NULL COMMENT '排序字段',
+`icon` varchar(255) DEFAULT NULL COMMENT '图标',
+`create_by` varchar(32) DEFAULT NULL,
+`create_date` datetime DEFAULT NULL,
+`update_by` varchar(32) DEFAULT NULL,
+`update_date` datetime DEFAULT NULL,
+`permission` varchar(255) DEFAULT NULL COMMENT '权限',
+`menu_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1栏目2菜单',
+PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -83,18 +98,18 @@ INSERT INTO `sys_menu` VALUES ('f23f6a6bf09511e78a57201a068c6482', '修改密码
 INSERT INTO `sys_menu` VALUES ('ff015ea5f09411e78a57201a068c6482', '编辑', 'cff61424dfb311e7b555201a068c6482', null, '2', '', 'acfc0e9232f54732a5d9ffe9071bf572', '2018-01-03 22:47:18', null, null, 'role:update', '1');
 
 -- ----------------------------
--- Table structure for sys_role
+-- Table structure for `sys_role`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role` (
-  `id` varchar(32) NOT NULL,
-  `role_name` varchar(128) DEFAULT NULL,
-  `remark` varchar(255) DEFAULT NULL,
-  `create_by` varchar(32) DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `update_by` varchar(32) DEFAULT NULL,
-  `update_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+`id` varchar(64) NOT NULL,
+`role_name` varchar(128) DEFAULT NULL,
+`remark` varchar(255) DEFAULT NULL,
+`create_by` varchar(32) DEFAULT NULL,
+`create_date` datetime DEFAULT NULL,
+`update_by` varchar(32) DEFAULT NULL,
+`update_date` datetime DEFAULT NULL,
+PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -104,12 +119,16 @@ INSERT INTO `sys_role` VALUES ('0ea934e5e55411e7b983201a068c6482', 'group1', '�
 INSERT INTO `sys_role` VALUES ('2619a672e53811e7b983201a068c6482', 'admin', '管理员', 'acfc0e9232f54732a5d9ffe9071bf572', '2017-12-20 11:44:57', null, '2018-01-02 11:38:37');
 
 -- ----------------------------
--- Table structure for sys_role_menu
+-- Table structure for `sys_role_menu`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_menu`;
 CREATE TABLE `sys_role_menu` (
-  `role_id` varchar(32) NOT NULL,
-  `menu_id` varchar(32) NOT NULL
+`role_id` varchar(64) NOT NULL,
+`menu_id` varchar(64) NOT NULL,
+KEY `fk_sysrolemenu_menu_idx` (`menu_id`),
+KEY `fk_sysrolemenu_role` (`role_id`),
+CONSTRAINT `fk_sysrolemenu_menu` FOREIGN KEY (`menu_id`) REFERENCES `sys_menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT `fk_sysrolemenu_role` FOREIGN KEY (`role_id`) REFERENCES `sys_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -146,23 +165,74 @@ INSERT INTO `sys_role_menu` VALUES ('2619a672e53811e7b983201a068c6482', 'e9a13e5
 INSERT INTO `sys_role_menu` VALUES ('2619a672e53811e7b983201a068c6482', 'ecda560cf36f11e7aca0201a068c6482');
 INSERT INTO `sys_role_menu` VALUES ('2619a672e53811e7b983201a068c6482', 'f23f6a6bf09511e78a57201a068c6482');
 INSERT INTO `sys_role_menu` VALUES ('2619a672e53811e7b983201a068c6482', 'ff015ea5f09411e78a57201a068c6482');
-INSERT INTO `sys_role_menu` VALUES ('a56219ffeb7d11e7928d201a068c6482', '433089a6eb0111e782d5201a068c6482');
-INSERT INTO `sys_role_menu` VALUES ('a56219ffeb7d11e7928d201a068c6482', 'cfda8029dfb311e7b555201a068c6482');
-INSERT INTO `sys_role_menu` VALUES ('a56219ffeb7d11e7928d201a068c6482', 'cfe54921dfb311e7b555201a068c6482');
 
 -- ----------------------------
--- Table structure for sys_role_user
+-- Table structure for `sys_role_user`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_user`;
 CREATE TABLE `sys_role_user` (
-  `user_id` varchar(32) NOT NULL,
-  `role_id` varchar(32) NOT NULL
+`user_id` varchar(64) NOT NULL,
+`role_id` varchar(64) NOT NULL,
+PRIMARY KEY (`user_id`,`role_id`),
+KEY `fk_sysroleuser_role_idx` (`role_id`),
+CONSTRAINT `fk_sysroleuser_role` FOREIGN KEY (`role_id`) REFERENCES `sys_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT `fk_sysroleuser_user` FOREIGN KEY (`user_id`) REFERENCES `sys_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_role_user
 -- ----------------------------
-INSERT INTO `sys_role_user` VALUES ('2211fec3e17c11e795ed201a068c6482', '0ea934e5e55411e7b983201a068c6482');
+INSERT INTO `sys_role_user` VALUES ('7970d8a4-ca43-41bc-af32-5961f870e5bd', '0ea934e5e55411e7b983201a068c6482');
 INSERT INTO `sys_role_user` VALUES ('acfc0e9232f54732a5d9ffe9071bf572', '0ea934e5e55411e7b983201a068c6482');
+INSERT INTO `sys_role_user` VALUES ('7970d8a4-ca43-41bc-af32-5961f870e5bd', '2619a672e53811e7b983201a068c6482');
 INSERT INTO `sys_role_user` VALUES ('acfc0e9232f54732a5d9ffe9071bf572', '2619a672e53811e7b983201a068c6482');
 
+-- ----------------------------
+-- Table structure for `sys_user`
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_user`;
+CREATE TABLE `sys_user` (
+`id` varchar(64) NOT NULL,
+`username` varchar(64) NOT NULL,
+`password` varchar(128) NOT NULL,
+`age` int(4) DEFAULT NULL,
+`email` varchar(128) DEFAULT NULL,
+`photo` varchar(255) DEFAULT NULL,
+`real_name` varchar(18) DEFAULT NULL,
+`create_by` varchar(32) DEFAULT NULL,
+`update_by` varchar(32) DEFAULT NULL,
+`create_date` datetime DEFAULT NULL,
+`update_date` datetime DEFAULT NULL,
+`del_flag` varchar(4) DEFAULT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_user
+-- ----------------------------
+INSERT INTO `sys_user` VALUES ('7970d8a4-ca43-41bc-af32-5961f870e5bd', 'test', '$2a$10$XL8Mz8X07xgDwK1iF6Lz6OiZdZuhKbJIV.o7.Tn8YcSUppIYDJ82.', null, null, null, null, null, null, null, '2018-02-07 15:59:25', '0');
+INSERT INTO `sys_user` VALUES ('acfc0e9232f54732a5d9ffe9071bf572', 'admin', '$2a$10$GySB750NJDS8xJCdMfhULuBzlNtAYU8Eafkug4d9Yxd1IsrF9dj2y', '24', '', '', '', null, 'acfc0e9232f54732a5d9ffe9071bf572', '2017-12-20 16:34:06', '2018-01-14 14:49:21', '0');
+
+-- ----------------------------
+-- Table structure for `userconnection`
+-- ----------------------------
+DROP TABLE IF EXISTS `userconnection`;
+CREATE TABLE `userconnection` (
+`userId` varchar(255) NOT NULL,
+`providerId` varchar(255) NOT NULL,
+`providerUserId` varchar(255) NOT NULL,
+`rank` int(11) NOT NULL,
+`displayName` varchar(255) DEFAULT NULL,
+`profileUrl` varchar(512) DEFAULT NULL,
+`imageUrl` varchar(512) DEFAULT NULL,
+`accessToken` varchar(512) NOT NULL,
+`secret` varchar(512) DEFAULT NULL,
+`refreshToken` varchar(512) DEFAULT NULL,
+`expireTime` bigint(20) DEFAULT NULL,
+PRIMARY KEY (`userId`,`providerId`,`providerUserId`),
+UNIQUE KEY `UserConnectionRank` (`userId`,`providerId`,`rank`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of userconnection
+-- ----------------------------
