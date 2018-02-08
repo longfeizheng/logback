@@ -81,7 +81,7 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
-        http
+        http.headers().frameOptions().disable().and()
                 .formLogin()//使用表单登录，不再使用默认httpBasic方式
                 .loginPage(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)//如果请求的URL需要认证则跳转的URL
                 .loginProcessingUrl(SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_FORM)//处理表单中自定义的登录URL
