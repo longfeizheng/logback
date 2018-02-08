@@ -1,0 +1,125 @@
+﻿.icon-add{
+	background:url(icons/add.gif) no-repeat;
+}
+.icon-addnew{
+	background:url(icons/addnew.gif) no-repeat;
+}
+.icon-edit{
+	background:url(icons/edit.gif) no-repeat;
+}
+.icon-remove{
+	background:url(icons/remove.gif) no-repeat;
+}
+.icon-save{
+	background:url(icons/save.gif) no-repeat;
+}
+.icon-close{
+	background:url(icons/cancel.gif) no-repeat;
+}
+.icon-cut{
+	background:url(icons/cut.png) no-repeat;
+}
+.icon-ok{
+	background:url(icons/ok.png) no-repeat;
+}
+.icon-no{
+	background:url(icons/no.png) no-repeat;
+}
+.icon-cancel{
+	background:url(icons/cancel.gif) no-repeat;
+}
+.icon-reload{
+	background:url(icons/reload.png) no-repeat;
+}
+.icon-search{
+	background:url(icons/search.gif) no-repeat;
+}
+.icon-print{
+	background:url(icons/print.gif) no-repeat;
+}
+.icon-help{
+	background:url(icons/help.gif) no-repeat;
+	
+}
+.icon-undo{
+	background:url(icons/undo.gif) no-repeat;
+}
+.icon-redo{
+	background:url(icons/redo.gif) no-repeat;
+}
+.icon-tip{
+	background:url(icons/tip.png) no-repeat;
+}
+.icon-zoomin{
+	background:url(icons/zoomin.gif) no-repeat;
+}
+.icon-zoomout{
+	background:url(icons/zoomout.gif) no-repeat;
+}
+.icon-goto{
+	background:url(icons/goto.gif) no-repeat;
+}
+.icon-date{
+	background:url(icons/date.gif) no-repeat;
+}
+.icon-filter{
+	background:url(icons/filter.gif) no-repeat;
+}
+.icon-find{
+	background:url(icons/find.png) no-repeat;
+}
+.icon-folder{
+	background:url(icons/folder.gif) no-repeat;
+}
+.icon-folderopen{
+	background:url(icons/folder-open.gif) no-repeat;
+}
+.icon-lock{
+	background:url(icons/lock.png) no-repeat;
+}
+.icon-unlock{
+	background:url(icons/unlock.gif) no-repeat;
+}
+.icon-new{
+	background:url(icons/new.gif) no-repeat;
+}
+.icon-node{
+	background:url(icons/node.png) no-repeat;
+}
+.icon-nowait{
+	background:url(icons/nowait.gif) no-repeat;
+}
+.icon-sort{
+	background:url(icons/sort.gif) no-repeat;
+}
+.icon-wait{
+	background:url(icons/wait.gif) no-repeat;
+}
+.icon-upgrade{
+	background:url(icons/upgrade.gif) no-repeat;
+}
+.icon-downgrade{
+	background:url(icons/downgrade.gif) no-repeat;
+}
+.icon-download{
+	background:url(icons/download.gif) no-repeat;
+}
+.icon-upload{
+	background:url(icons/upload.gif) no-repeat;
+}
+.icon-user{
+	background:url(icons/user.png) no-repeat;
+}
+.icon-split{
+	background:url(icons/split.gif) no-repeat;
+}
+.icon-addfolder{
+	background:url(icons/addfolder.gif) no-repeat;
+}
+
+.icon-expand{
+	background:url(icons/expand.gif) no-repeat;
+}
+.icon-collapse{
+	background:url(icons/collapse.gif) no-repeat;
+}

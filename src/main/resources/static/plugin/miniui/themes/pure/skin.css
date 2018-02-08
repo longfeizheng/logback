@@ -1,0 +1,673 @@
+﻿
+/* base
+==========================================*/
+.app-header
+{
+    background:#f8f8f8;
+}
+.app-toolbar,
+.bg-toolbar
+{
+    background:#f8f8f8;
+}
+.mini-modal
+{
+    background:#f8f8f8;    
+    opacity: .6;
+    filter: alpha(opacity=60);    
+}
+.mini-mask-background
+{
+    background:#f8f8f8;    
+    opacity: 0;
+    filter: alpha(opacity=0);    
+}
+.mini-popup,
+.mini-window,
+.mini-menu-open
+{
+    /*box-shadow:rgba(0,​ 0,​ 0,​ 0.6) 0px 6px 12px 0px;*/
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* tools
+==========================================*/
+
+/* popup
+==========================================*/
+.mini-popup
+{
+    border-color:#ddd;
+}
+
+/* toolbar
+==========================================*/
+.mini-toolbar
+{
+    background:#fbfbfb;
+    border-color:#ddd;
+}
+.separator
+{
+    border-color:#ddd;    
+}
+
+/* button
+==========================================*/
+.mini-button
+{    
+    background: #f8f8f8;
+    border-color: #ddd;
+    color:#444;   
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;    
+}
+body a:hover.mini-button
+{
+    background: #f1f8fd;
+    border-color: #6ea6cc; 
+}
+body .mini-button-pressed, body a:hover.mini-button-pressed,
+body .mini-button-checked, body a:hover.mini-button-checked,
+body a.mini-button-popup, body a:hover.mini-button-popup
+{
+    background: #f1f8fd;
+    border-color: #6ea6cc; 
+}
+body a.mini-button-disabled, body a:hover.mini-button-disabled
+{
+    border-color:#bbb;
+    background: transparent;
+    opacity: 0.5;
+    filter: alpha(opacity=50);	
+}
+
+/* textbox
+==========================================*/
+.mini-textbox-border
+{
+    background:white;
+	border-color:#ddd;	
+}
+.mini-textbox-focus .mini-textbox-border
+{
+    background-color: #f1f8fd;
+    border-color: #6ea6cc;    
+}
+body .mini-error .mini-textbox-border,
+body .mini-error .mini-buttonedit-border,
+body .mini-error .mini-textboxlist-border
+{
+    border-color: #ffa8a8;
+    background-color: #fff3f3;
+}
+.mini-textbox-input
+{
+    color:#444;
+}
+
+/* buttonedit
+==========================================*/
+.mini-buttonedit-border
+{
+	background:white;
+	border-color:#ddd;
+}
+.mini-buttonedit-focus .mini-buttonedit-border
+{
+    background-color: #f1f8fd;
+    border-color: #6ea6cc;
+}
+.mini-buttonedit-input
+{
+    color:#444;
+}
+.mini-buttonedit-button
+{
+    background:transparent;    
+    border-color:#ddd;
+    color: #444;
+}
+.mini-buttonedit-button-hover,
+.mini-buttonedit-hover .mini-buttonedit-trigger
+{
+	color:#444;			
+    background:transparent;    
+    border-color:transparent;    
+}
+.mini-buttonedit-button-pressed,
+.mini-buttonedit-popup .mini-buttonedit-trigger
+{
+	color:#444;
+    background:transparent;    
+    border-color:transparent;   
+}
+.mini-popupedit .mini-buttonedit-trigger .mini-buttonedit-icon
+{
+    background:url(images/buttonedit/arrow.gif) no-repeat  1px 2px;
+}
+.mini-datepicker .mini-buttonedit-trigger .mini-buttonedit-icon
+{
+    background:url(images/buttonedit/date.gif) no-repeat  50% 50%;
+}
+.mini-buttonedit-up span, .mini-buttonedit-down span
+{
+    background:url(images/buttonedit/spinner_arrows.png) no-repeat 0px 50%; 
+}
+.mini-buttonedit-down span
+{
+    background-position:-16px 50%;
+}
+
+/* textboxlist
+==========================================*/
+.mini-textboxlist-border
+{
+    border-color: #ddd;
+}
+.mini-textboxlist-focus .mini-textboxlist-border
+{
+    background-color: #f1f8fd;
+    border-color: #6ea6cc;
+}
+.mini-textboxlist-item
+{
+    color:#444;
+}
+
+/* htmlfile
+==========================================*/
+.mini-htmlfile .mini-buttonedit-button
+{
+	color:#fff;			
+    background: #519fe3;
+    border-color: #519fe3;        
+}
+
+/* panel
+==========================================*/
+.mini-panel-border
+{    
+    border-color:#ddd;     
+}
+.mini-panel-header
+{
+    background:#f8f8f8;
+    color:#444;
+    font-weight:bold;
+    border-color:#ddd;
+}
+.mini-panel-toolbar,
+.mini-panel-footer
+{
+    background:#f8f8f8;
+    border-color:#ddd;
+}
+
+/* window
+==========================================*/
+.mini-window .mini-panel-header
+{    
+    background:#f8f8f8;
+}
+.mini-window .mini-panel-footer
+{
+    background:#f8f8f8;
+}
+
+/* outlookbar
+==========================================*/
+.mini-outlookbar-border
+{
+    border-color:#ddd;         
+}
+.mini-outlookbar .mini-outlookbar-groupHeader
+{
+    background:#f8f8f8;
+    border-color:#ddd;    
+    color:#444;   
+}
+.mini-outlookbar .mini-outlookbar-hover
+{
+    background:#e5f0c9;    
+}
+.mini-outlookbar-expand .mini-outlookbar-groupHeader
+{
+    background:#f8f8f8;
+}
+.mini-outlookbar .mini-outlookbar-groupTitle
+{
+    font-weight:normal;
+}
+.mini-outlookbar .mini-outlookbar-group 
+{
+    border-color:#ddd;
+}
+.mini-outlookbar .mini-outlookbar-groupBody
+{    
+    border-color:#ddd;
+}
+.mini-outlookbar-view2 .mini-outlookbar-groupHeader
+{
+    border-color:#ddd; 
+}
+.mini-outlookbar-view2 .mini-outlookbar-groupBody
+{    
+    background:#f8f8f8;
+}
+.mini-outlookbar-view3 .mini-outlookbar-group
+{
+    border-color:#ddd; 
+}
+
+/* splitter
+==========================================*/
+.mini-splitter-border
+{
+    border-color: #ddd;     
+}
+.mini-splitter .mini-splitter-pane1{
+    border-color:#ddd;
+}
+.mini-splitter .mini-splitter-pane2{
+    border-color:#ddd;
+}
+
+/* layout
+==========================================*/
+.mini-layout-border
+{
+    border-color:#ddd;
+}
+.mini-layout-region
+{
+    border-color:#ddd;    
+}
+.mini-layout-region-header
+{
+    background:#f8f8f8;
+    border-color:#ddd;
+}
+.mini-layout-proxy
+{
+    border-color:#ddd;
+    background:#f8f8f8;
+}
+.mini-layout-proxy-hover
+{
+    background:#f1f8fd;    
+}
+.mini-layout-region-title
+{
+    color:#444;
+}
+
+/* menu
+==========================================*/
+.mini-menu
+{
+	background:#fff;	
+    color:#444;    
+}
+.mini-menu-border
+{
+    border-color:#ddd;
+}
+.mini-menuitem-hover,  
+.mini-menu-popup
+{
+    border-color:#ddd;
+	background:#f1f8fd;
+}
+.mini-menuitem-selected
+{
+    border-color:#ddd;
+	background:#f1f8fd;
+}
+.mini-menuitem-text, .mini-menuitem-text a
+{
+    color:#444;
+}
+.mini-separator
+{
+    border-color:#ddd;
+}
+.mini-menu-horizontal .mini-menu-inner
+{
+    background:#f8f8f8;
+}
+.mini-menu-horizontal .mini-menuitem-allow
+{
+    background:url(images/menu/menu_arrows.png) no-repeat -2px -4px;
+}
+
+/* pager
+==========================================*/
+.mini-pager
+{
+    background:#fbfbfb;
+    border-color:#ddd;
+    color:#444;
+}
+
+/* grid
+==========================================*/
+.mini-grid-border
+{
+    border-color:#ddd;    
+}
+.mini-grid-header
+{
+    background:#f8f8f8;
+}
+
+.mini-grid-headerCell,
+.mini-grid-topRightCell,
+.mini-grid-columnproxy
+{
+    background:#f8f8f8;
+    border-color:#ddd;
+}
+.mini-grid-cell
+{
+    border-color:#ddd;
+}
+.mini-grid-footer, 
+.mini-grid-pager,
+.mini-grid-filterRow
+{
+    border-color:#ddd;    
+    background:#fbfbfb;
+}
+html body .mini-grid-row-hover
+{
+    background: #f1f8fd;
+}
+html body .mini-grid-row-selected
+{
+    background: #eef4f9;
+}
+html body .mini-grid .mini-grid-cell-selected
+{
+    background:#bbdcf8;
+}
+.mini-grid-header-over
+{
+    background: #f1f8fd;
+}
+.mini-grid-headerCell-inner,
+.mini-grid-cell
+{
+    color:#444;
+}
+
+.mini-grid-cell-inner, .mini-grid-headerCell-inner 
+{
+    font-family:"Helvetica Neue",​Helvetica,​Arial,​sans-serif;
+}
+
+/* tree
+==========================================*/
+.mini-tree-node-hover .mini-tree-nodeshow
+{
+    background:#f1f8fd;
+	border-color:#ddd;  
+}
+.mini-tree-selectedNode .mini-tree-nodeshow
+{
+    background:#bbdcf8;
+    border-color:#ddd;
+}
+.mini-tree-leaf
+{
+    background-image:url(images/tree/file.gif);
+}
+.mini-tree-folder
+{
+    background-image:url(images/tree/folder.gif);   
+}
+.mini-tree-expand .mini-tree-folder
+{
+    background-image:url(images/tree/folder-open.gif);
+}
+
+/* listbox
+==========================================*/
+.mini-listbox-border
+{    
+    border-color:#ddd;
+}
+.mini-listbox-header
+{
+    background:#f8f8f8;
+    border-color:#ddd;
+}
+.mini-listbox-header td
+{
+    border-color:#ddd;
+}
+.mini-listbox-item td{
+	border-color:#ddd;
+	color:#444;
+}
+.mini-listbox-item-hover td{
+    background:#f1f8fd;
+}
+.mini-listbox-item-selected td{
+	background:#bbdcf8;
+}
+
+/* tabs
+==========================================*/
+.mini-tabs-scrollCt
+{
+    border-color:#ddd;
+    background:#f8f8f8;
+}
+.mini-tabs-leftButton, 
+.mini-tabs-rightButton,
+.mini-tabs-tabmenu
+{
+    border-color:#ddd;
+    background-color:#f8f8f8;
+}
+a:hover.mini-tabs-leftButton,
+a:hover.mini-tabs-rightButton,
+a:hover.mini-tabs-tabmenu
+{
+    border-color:#ddd;
+    background-color:#e5f0c9;
+}
+/* top */
+.mini-tabs-bodys
+{
+    border-color:#ddd;
+}
+.mini-tabs-space
+{
+    border-color:#ddd;
+}
+.mini-tabs-space2
+{
+    border-color:#ddd;
+}
+.mini-tab
+{
+    background: #f8f8f8;
+    border-color:#ddd;
+    color: #666;        
+    font-weight:bold;
+}
+.mini-tab-hover
+{    
+    background:#f1f8fd;
+}
+.mini-tab-active
+{
+    border-color:#ddd;
+    border-bottom-color:#fff;
+    background:#fff;
+    color:#2b7dbc;
+}
+.mini-tab-close-hover
+{
+    background-color:#ddd;
+}
+/* bottom */
+.mini-tabs-header-bottom .mini-tabs-space,
+.mini-tabs-header-bottom .mini-tabs-space2
+{
+    border-color:#ddd;
+}
+.mini-tabs-header-bottom .mini-tabs-bodys
+{    
+    border-color:#ddd;    
+}
+.mini-tabs-header-bottom .mini-tab-active
+{
+    border-top-color:white;
+    border-bottom-color:#ddd;
+}
+.mini-tabs-body-bottom
+{
+    border-color:#ddd;    
+}
+/* left */
+.mini-tabs-header-left .mini-tabs-space,
+.mini-tabs-header-left .mini-tabs-space2
+{
+    border-color:#ddd;
+}
+.mini-tabs-header-left .mini-tabs-bodys
+{
+    border-color:#ddd;    
+}
+.mini-tabs-header-left .mini-tab-active
+{    
+    border-color:#ddd;
+    border-right-color:white;
+}
+.mini-tabs-body-left
+{
+    border-color:#ddd;    
+}
+/* right */
+.mini-tabs-header-right .mini-tabs-space,
+.mini-tabs-header-right .mini-tabs-space2
+{
+    border-color:#ddd;
+}
+.mini-tabs-header-right .mini-tabs-bodys
+{    
+    border-color:#ddd;    
+}
+.mini-tabs-header-right .mini-tab-active
+{    
+    border-color:#ddd;
+    border-left-color:white;
+}
+.mini-tabs-body-right
+{
+    border-color:#ddd;    
+}
+/*bordered*/
+.mini-tabs-header-top .mini-tab-active
+{
+    border-top:solid 3px #4c8fbd;
+    padding-top:1px;
+}
+.mini-tabs-header-bottom .mini-tab-active
+{
+    border-bottom:solid 3px #4c8fbd;
+    padding-bottom:1px;
+}
+.mini-tabs-header-left .mini-tab-active
+{
+    border-left:solid 3px #4c8fbd;
+    padding-left:10px;
+}
+.mini-tabs-header-right .mini-tab-active
+{
+    border-right:solid 3px #4c8fbd;
+    padding-right:10px;
+}
+
+/* tooltip
+==========================================*/
+.mini-tooltip-inner {    
+    border-color:#ddd;
+    border-radius: 0px;
+}
+
+/* calendar
+==========================================*/
+.mini-calendar
+{    
+    border-color:#ddd;           
+}
+.mini-calendar-header
+{   
+    background:#f8f8f8;    
+    border-color:#ddd;
+}
+.mini-calendar-footer
+{
+    border-color:#ddd;
+    background:#fafafa;      
+}
+.mini-calendar-tadayButton, .mini-calendar-clearButton,
+.mini-calendar-okButton, .mini-calendar-cancelButton
+{
+    background: #f8f8f8;
+    border-color: #ddd;
+    color: #444;
+}
+.mini-calendar-tadayButton:hover, .mini-calendar-clearButton:hover,
+.mini-calendar-okButton:hover, .mini-calendar-cancelButton:hover
+{
+    background-color: #f1f8fd;
+    border-color: #6ea6cc;   
+}
+.mini-calendar .mini-calendar-today
+{
+    border-color:#C00000;
+}
+.mini-calendar-daysheader td
+{
+    border-color:#ddd;    
+}
+.mini-calendar-menu
+{
+    border-color:#ddd;
+}
+.mini-calendar-title,
+.mini-calendar-menu-year,
+.mini-calendar-menu-month
+{
+    color:#444;
+}
+.mini-calendar .mini-calendar-selected,
+.mini-calendar-menu-selected,
+a:hover.mini-calendar-menu-month,
+a:hover.mini-calendar-menu-year
+{
+    color:#444;
+    background-color: #f1f8fd;
+    border-color: #6ea6cc;    
+}
+
+/* progressbar
+==========================================*/
+.mini-progressbar-border
+{
+    border-color:#ddd;
+}
+.mini-progressbar-bar
+{
+    background:#f8f8f8;
+}
+.mini-progressbar-text
+{ 
+    color:#222; 
+}
+
+

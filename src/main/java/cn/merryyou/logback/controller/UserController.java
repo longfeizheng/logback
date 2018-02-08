@@ -2,6 +2,7 @@ package cn.merryyou.logback.controller;
 
 import cn.merryyou.logback.domain.SysUser;
 import cn.merryyou.logback.properties.SecurityConstants;
+import cn.merryyou.logback.service.SysMenuService;
 import cn.merryyou.logback.service.SysUserService;
 import cn.merryyou.logback.social.SocialUserInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +37,7 @@ public class UserController {
     @Autowired
     private SysUserService sysUserService;
 
+
     @Autowired
     private ProviderSignInUtils providerSignInUtils;
 
@@ -50,6 +52,7 @@ public class UserController {
 
     /**
      * 获取第三方用户信息
+     *
      * @param request
      * @return
      */
@@ -73,8 +76,8 @@ public class UserController {
     @PostMapping("/user/register")
     public String register(SysUser user, HttpServletRequest request, HttpServletResponse response) throws IOException {
         String userId = user.getUsername();
-        SysUser result =  sysUserService.findByUsername(userId);
-        if(result==null){
+        SysUser result = sysUserService.findByUsername(userId);
+        if (result == null) {
             //注册用户
             sysUserService.save(user);
         }
@@ -83,5 +86,4 @@ public class UserController {
         //跳转到index
         return "redirect:/index";
     }
-
 }
