@@ -15,4 +15,6 @@ public interface SysMenuRepository extends MerryyouRepository<SysMenu> {
 
     List<SysMenu> findAllByOrderByOrderNumAsc();
 
+    List<SysMenu> findAllByMenuType(Byte menuType);
+
 }

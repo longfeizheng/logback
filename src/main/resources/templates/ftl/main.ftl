@@ -1,9 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Spring Security Demo</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-Frame-Options" content="deny">
     <link href="${re.contextPath}/css/demo.css" rel="stylesheet" type="text/css" />
     <script src="${re.contextPath}/plugin/boot.js" type="text/javascript"></script>
     <script src="${re.contextPath}/js/UserSelectWindow.js" type="text/javascript"></script>
@@ -47,7 +46,7 @@
         <div id="mainTabs" class="mini-tabs bg-toolbar" activeIndex="0" style="width:100%;height:100%;"
              bodyStyle="border:0;background:white;"
         >
-            <div title="首页" url="../../docs/api/overview.html" >
+            <div title="首页" url="${re.contextPath}/hello" >
             </div>
 
         </div>

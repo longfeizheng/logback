@@ -26,11 +26,11 @@ public class SysMenuServiceImpl implements SysMenuService {
     @Override
     public List<MenuDto> getMenus() {
         List<MenuDto> menuDtoList = new ArrayList<>();
-        List<SysMenu> menuList = repository.findAllByOrderByOrderNumAsc();
+        List<SysMenu> menuList = repository.findAllByMenuType((byte) 0);
         MenuDto menuDto;
-        for(SysMenu sysMenu:menuList){
+        for (SysMenu sysMenu : menuList) {
             menuDto = new MenuDto();
-            BeanUtils.copyProperties(sysMenu,menuDto);
+            BeanUtils.copyProperties(sysMenu, menuDto);
             menuDtoList.add(menuDto);
         }
         return menuDtoList;

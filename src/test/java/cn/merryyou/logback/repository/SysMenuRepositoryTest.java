@@ -31,4 +31,12 @@ public class SysMenuRepositoryTest {
             log.info(sysMenu.toString());
         }
     }
+
+    @Test
+    public void findAllByMenuTypeTest() throws Exception{
+        List<SysMenu> menuList = sysMenuRepository.findAllByMenuType((byte)0);
+        for(SysMenu sysMenu:menuList){
+            log.info(sysMenu.toString());
+        }
+    }
 }

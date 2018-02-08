@@ -78,6 +78,15 @@ public class LoginController {
 
     }
 
+    @GetMapping(value = "/hello")
+    public ModelAndView hello(@AuthenticationPrincipal UserDetails userDetails, Map<String, String> map) {
+        map.put("username", userDetails.getUsername());
+
+        //
+        return new ModelAndView("hello", map);
+
+    }
+
     @GetMapping(value = "/menus")
     @ResponseBody
     public List<MenuDto> menus(@AuthenticationPrincipal UserDetails userDetails, Map<String, String> map) {
