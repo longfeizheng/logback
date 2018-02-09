@@ -2,7 +2,6 @@
 <head>
     <title>Spring Security Demo</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-Frame-Options" content="deny">
     <link href="${re.contextPath}/css/demo.css" rel="stylesheet" type="text/css" />
     <script src="${re.contextPath}/plugin/boot.js" type="text/javascript"></script>
     <script src="${re.contextPath}/js/UserSelectWindow.js" type="text/javascript"></script>

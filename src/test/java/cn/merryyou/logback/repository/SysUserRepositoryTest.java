@@ -104,4 +104,8 @@ public class SysUserRepositoryTest {
         SysUser sysUser = repository.save(user);
         log.info(sysUser.toString());
     }
+
+    public void findByIdTest() throws Exception{
+
+    }
 }

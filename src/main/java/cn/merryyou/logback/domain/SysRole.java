@@ -83,6 +83,12 @@ public class SysRole implements Serializable {
     public String toString() {
         return "SysRole{" +
                 "id='" + id + '\'' +
+                ", roleName='" + roleName + '\'' +
+                ", remark='" + remark + '\'' +
+                ", createBy='" + createBy + '\'' +
+                ", createDate=" + createDate +
+                ", updateBy='" + updateBy + '\'' +
+                ", updateDate=" + updateDate +
                 '}';
     }
 }

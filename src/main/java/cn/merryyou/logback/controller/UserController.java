@@ -1,8 +1,9 @@
 package cn.merryyou.logback.controller;
 
+import cn.merryyou.logback.domain.PageResult;
 import cn.merryyou.logback.domain.SysUser;
+import cn.merryyou.logback.dto.UserDto;
 import cn.merryyou.logback.properties.SecurityConstants;
-import cn.merryyou.logback.service.SysMenuService;
 import cn.merryyou.logback.service.SysUserService;
 import cn.merryyou.logback.social.SocialUserInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -12,16 +13,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -85,5 +84,40 @@ public class UserController {
         providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
         //跳转到index
         return "redirect:/index";
+    }
+
+    @GetMapping("/user/showUser")
+    public ModelAndView userListView() {
+        return new ModelAndView("/user/userList");
+    }
+
+    @GetMapping("/user/addUser")
+    public ModelAndView addUserView() {
+        return new ModelAndView("/user/userAdd");
+    }
+
+    @GetMapping("/user/{id}")
+    @ResponseBody
+    public UserDto findUser(@PathVariable("id") String id) {
+        return sysUserService.findOne(id);
+    }
+
+    @PostMapping(value = "/user/saveUser")
+    @ResponseBody
+    public UserDto saveUser(@RequestParam String data) {
+        log.info(data);
+        return sysUserService.save(data);
+    }
+
+    @PostMapping("/user/userList")
+    @ResponseBody
+    public PageResult userList(@RequestParam(value = "page", defaultValue = "0") Integer page,
+                               @RequestParam(value = "size", defaultValue = "10") Integer size) {
+
+        List<UserDto> userList = sysUserService.findAll();
+        PageResult pageResult = new PageResult();
+        pageResult.setData(userList);
+        pageResult.setTotal(String.valueOf(userList.size()));
+        return pageResult;
     }
 }

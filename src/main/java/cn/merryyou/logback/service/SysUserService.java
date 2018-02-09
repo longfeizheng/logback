@@ -1,6 +1,9 @@
 package cn.merryyou.logback.service;
 
 import cn.merryyou.logback.domain.SysUser;
+import cn.merryyou.logback.dto.UserDto;
+
+import java.util.List;
 
 /**
  * Created on 2018/2/1 0001.
@@ -14,4 +17,10 @@ public interface SysUserService {
     SysUser save(SysUser user);
 
     SysUser findByUsername(String username);
+
+    List<UserDto> findAll();
+
+    UserDto findOne(String id);
+
+    UserDto save(String data);
 }

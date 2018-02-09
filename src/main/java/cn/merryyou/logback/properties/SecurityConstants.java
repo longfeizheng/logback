@@ -105,4 +105,9 @@ public interface SecurityConstants {
      * session失效默认的跳转地址
      */
     String DEFAULT_SESSION_INVALID_URL = "/merryyou-session-invalid.html";
+
+    /**
+     * 默认用户密码
+     */
+    String DEFAULT_PASSWORD="123456";
 }
