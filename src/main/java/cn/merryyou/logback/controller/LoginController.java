@@ -1,6 +1,5 @@
 package cn.merryyou.logback.controller;
 
-import cn.merryyou.logback.dto.MenuDto;
 import cn.merryyou.logback.properties.SecurityConstants;
 import cn.merryyou.logback.service.SysMenuService;
 import cn.merryyou.logback.social.SocialUserInfo;
@@ -13,13 +12,11 @@ import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -85,14 +82,6 @@ public class LoginController {
         //
         return new ModelAndView("hello", map);
 
-    }
-
-    @GetMapping(value = "/menus")
-    @ResponseBody
-    public List<MenuDto> menus(@AuthenticationPrincipal UserDetails userDetails, Map<String, String> map) {
-        map.put("username", userDetails.getUsername());
-        List<MenuDto> menus = sysMenuService.getMenus();
-        return menus;
     }
 
     /**

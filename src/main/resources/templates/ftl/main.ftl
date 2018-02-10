@@ -34,7 +34,7 @@
     </div>
     <div showHeader="false" region="west" width="180" maxWidth="250" minWidth="100" style="border:0;" >
         <!--OutlookMenu-->
-        <div class="mini-outlookmenu" url="${re.contextPath}/menus" onitemselect="onItemSelect"
+        <div class="mini-outlookmenu" url="${re.contextPath}/menu/menus" onitemselect="onItemSelect"
              idField="id" parentField="pid" textField="text"
         >
         </div>

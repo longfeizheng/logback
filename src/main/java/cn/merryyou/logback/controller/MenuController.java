@@ -1,10 +1,17 @@
 package cn.merryyou.logback.controller;
 
+import cn.merryyou.logback.dto.MenuDto;
+import cn.merryyou.logback.service.SysMenuService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,9 +24,22 @@ import java.util.Map;
 @RequestMapping("/menu")
 public class MenuController {
 
+    @Autowired
+    private SysMenuService sysMenuService;
+
+
     @GetMapping("/showMenu")
     public ModelAndView showMenu(Map map) {
 
         return new ModelAndView("menu/menuList",map);
     }
+
+    @RequestMapping(value = "/menus")
+    @ResponseBody
+    public List<MenuDto> menus(@AuthenticationPrincipal UserDetails userDetails, Map<String, String> map) {
+        map.put("username", userDetails.getUsername());
+        List<MenuDto> menus = sysMenuService.getMenus();
+        return menus;
+    }
+
 }
