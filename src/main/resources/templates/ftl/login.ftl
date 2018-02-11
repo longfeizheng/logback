@@ -30,7 +30,7 @@
                 </div>
                 <div class="ececk_warning"><span>密码不能为空</span></div>
                 <div class="form_text_ipt">
-                    <input style="width: 150px;" name="imageCode" type="text" placeholder="验证码">
+                    <input style="width: 150px;" name="imageCode" type="text" placeholder="验证码"  onkeydown="keyDown()">
                     <img src="/code/image" onclick="javascript:this.src='/code/image?random='+Math.random()">
                 </div>
                 <div class="ececk_warning"><span>验证码不能为空</span></div>
@@ -99,7 +99,16 @@
             })
             ;
         });
+
     });
+
+    function keyDown(){
+        if (event.keyCode == 13){
+            event.returnValue=false;
+            event.cancel = true;
+            $("#login").click();
+        }
+    }
 </script>
 </body>
 </html>
