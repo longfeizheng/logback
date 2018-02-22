@@ -1,5 +1,7 @@
 package cn.merryyou.logback.domain;
 
+import cn.merryyou.logback.serializer.Date2LongSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -53,6 +55,7 @@ public class SysRole implements Serializable {
     /**
      * 创建时间
      */
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date createDate;
 
     /**

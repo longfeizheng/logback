@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>新增用户</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="${re.contextPath}/plugin/boot.js" type="text/javascript"></script>
+    <style type="text/css">
+        html, body
+        {
+            font-size:12px;
+            padding:0;
+            margin:0;
+            border:0;
+            height:100%;
+            overflow:hidden;
+        }
+    </style>
+</head>
+<body>
+
+<form id="form1" method="post">
+    <input name="id" class="mini-hidden" />
+    <fieldset style="border:solid 1px #aaa;padding:3px;">
+        <legend >基本信息</legend>
+        <div style="padding:5px;">
+            <table>
+                <tr>
+                    <td style="width:70px;">角色名称</td>
+                    <td style="width:150px;">
+                        <input name="roleName" class="mini-textbox" required="true"/>
+                    </td>
+                    <td style="width:70px;">角色描述：</td>
+                    <td >
+                        <input name="realName" class="mini-textbox" required="true"/>
+                    </td>
+
+                </tr>
+            </table>
+
+            <h1>权限分配</h1>
+            <input type="button" value="获取权限" onclick="getCheckedNodes()" />
+            <ul id="tree2" class="mini-tree" url="${re.contextPath}/menu/menus" style="width:200px;padding:5px;"
+                showTreeIcon="true" textField="text" idField="id" parentField="pid" resultAsTree="false"
+                showCheckBox="true" checkRecursive="true"
+                onbeforenodecheck="onBeforeNodeCheck" allowSelect="false" enableHotTrack="false"
+
+            >
+            </ul>
+        </div>
+    </fieldset>
+    <div style="text-align:center;padding:10px;">
+        <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
+        <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
+    </div>
+</form>
+<script type="text/javascript">
+    mini.parse();
+
+    var form = new mini.Form("form1");
+
+    function SaveData() {
+        var o = form.getData();
+
+        form.validate();
+        if (form.isValid() == false) return;
+
+        var json = mini.encode([o]);
+        console.log(json);
+        $.ajax({
+            url: "${re.contextPath}/user/saveUser",
+            type: 'post',
+            data: { data: json },
+            cache: false,
+            success: function (text) {
+                CloseWindow("save");
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(1111);
+                alert(jqXHR.responseText);
+                CloseWindow();
+            }
+        });
+    }
+
+    ////////////////////
+    //标准方法接口定义
+    function SetData(data) {
+        if (data.action == "edit") {
+            //跨页面传递的数据对象，克隆后才可以安全使用
+            data = mini.clone(data);
+
+            $.ajax({
+                url: "${re.contextPath}/user/"+data.id,
+                cache: false,
+                success: function (text) {
+                    var o = mini.decode(text);
+                    form.setData(o);
+                    form.setChanged(false);
+
+                    onDeptChanged();
+                    mini.getbyName("position").setValue(o.position);
+                }
+            });
+        }
+    }
+
+    function GetData() {
+        var o = form.getData();
+        return o;
+    }
+    function CloseWindow(action) {
+        if (action == "close" && form.isChanged()) {
+            if (confirm("数据被修改了，是否先保存？")) {
+                return false;
+            }
+        }
+        if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+        else window.close();
+    }
+    function onOk(e) {
+        SaveData();
+    }
+    function onCancel(e) {
+        CloseWindow("cancel");
+    }
+
+    function getCheckedNodes() {
+        var tree = mini.get("tree2");
+
+        var value = tree.getValue();
+        alert(value);
+
+    }
+
+    function onBeforeNodeCheck(e) {
+        var tree = e.sender;
+        var node = e.node;
+        if (tree.hasChildren(node)) {
+            //e.cancel = true;
+        }
+    }
+
+</script>
+</body>
+</html>
