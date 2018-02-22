@@ -19,3 +19,9 @@
 2. 修改application.yml中数据源信息，执行db文件夹下面的sql文件
 3. 修改application-dev.yml 中redis连接信息
 4. 社交登录需配置host文件：`127.0.0.1 www.ictgu.cn` 微信`appid`将以2018-02-11到期
+
+---
+[![https://raw.githubusercontent.com/longfeizheng/longfeizheng.github.io/master/images/wechat/xiaochengxu.png](https://raw.githubusercontent.com/longfeizheng/longfeizheng.github.io/master/images/wechat/xiaochengxu.png "https://raw.githubusercontent.com/longfeizheng/longfeizheng.github.io/master/images/wechat/xiaochengxu.png")](https://raw.githubusercontent.com/longfeizheng/longfeizheng.github.io/master/images/wechat/xiaochengxu.png "https://raw.githubusercontent.com/longfeizheng/longfeizheng.github.io/master/images/wechat/xiaochengxu.png")
+
+> 🙂🙂🙂关注微信小程序**java架构师历程**
+上下班的路上无聊吗？还在看小说、新闻吗？不知道怎样提高自己的技术吗？来吧这里有你需要的java架构文章，1.5w+的java工程师都在看，你还在等什么？
