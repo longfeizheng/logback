@@ -1,5 +1,6 @@
 package cn.merryyou.logback.service;
 
+import cn.merryyou.logback.domain.Result;
 import cn.merryyou.logback.domain.SysUser;
 import cn.merryyou.logback.dto.UserDto;
 
@@ -23,4 +24,6 @@ public interface SysUserService {
     UserDto findOne(String id);
 
     UserDto save(String data);
+
+    Result<String> delUsers(String ids);
 }

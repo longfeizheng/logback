@@ -1,6 +1,7 @@
 package cn.merryyou.logback.controller;
 
 import cn.merryyou.logback.domain.PageResult;
+import cn.merryyou.logback.domain.Result;
 import cn.merryyou.logback.domain.SysUser;
 import cn.merryyou.logback.dto.UserDto;
 import cn.merryyou.logback.properties.SecurityConstants;
@@ -100,6 +101,12 @@ public class UserController {
     @ResponseBody
     public UserDto findUser(@PathVariable("id") String id) {
         return sysUserService.findOne(id);
+    }
+
+    @RequestMapping("/user/del/{ids}")
+    @ResponseBody
+    public Result<String> delUsers(@PathVariable("ids") String ids) {
+        return sysUserService.delUsers(ids);
     }
 
     @PostMapping(value = "/user/saveUser")

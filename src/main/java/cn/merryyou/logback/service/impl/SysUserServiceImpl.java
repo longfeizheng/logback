@@ -1,12 +1,17 @@
 package cn.merryyou.logback.service.impl;
 
+import cn.merryyou.logback.domain.Result;
 import cn.merryyou.logback.domain.SysUser;
 import cn.merryyou.logback.dto.UserDto;
+import cn.merryyou.logback.enums.ResultEnum;
 import cn.merryyou.logback.properties.SecurityConstants;
 import cn.merryyou.logback.repository.SysUserRepository;
 import cn.merryyou.logback.service.SysUserService;
+import cn.merryyou.logback.utils.ResultUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import freemarker.template.utility.StringUtil;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -75,10 +80,20 @@ public class SysUserServiceImpl implements SysUserService {
                 }.getType());
         UserDto userDto = userDtoList.get(0);
         SysUser sysUser = new SysUser();
-        BeanUtils.copyProperties(userDto,sysUser);
+        BeanUtils.copyProperties(userDto, sysUser);
         sysUser.setPassword(bCryptPasswordEncoder.encode(SecurityConstants.DEFAULT_PASSWORD));
         SysUser user = userRepository.save(sysUser);
-        BeanUtils.copyProperties(user,userDto);
+        BeanUtils.copyProperties(user, userDto);
         return userDto;
+    }
+
+    @Override
+    public Result<String> delUsers(String ids) {
+        if (StringUtils.isEmpty(ids)) return ResultUtil.error(ResultEnum.FAIL.getCode(), "请选择要删除的行！");
+        String[] userIds = ids.split(",");
+        for (String id : userIds) {
+            userRepository.delete(id);
+        }
+        return ResultUtil.success("删除成功！");
     }
 }

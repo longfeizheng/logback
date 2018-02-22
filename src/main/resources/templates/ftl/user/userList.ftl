@@ -42,7 +42,6 @@
     mini.parse();
     var grid = mini.get("datagrid1");
     grid.load();
-    grid.sortBy("createtime", "desc");
 
 
     function add() {
@@ -65,7 +64,7 @@
         var row = grid.getSelected();
         if (row) {
             mini.open({
-                url:"${re.contextPath}/user/addUser",
+                url: "${re.contextPath}/user/addUser",
                 title: "编辑员工", width: 600, height: 400,
                 onload: function () {
                     var iframe = this.getIFrameEl();
@@ -97,8 +96,9 @@
                 var id = ids.join(',');
                 grid.loading("操作中，请稍后......");
                 $.ajax({
-                    url: "../data/AjaxService.jsp?method=RemoveEmployees&id=" + id,
+                    url: "${re.contextPath}/user/del/" + id,
                     success: function (text) {
+                        alert(text.msg);
                         grid.reload();
                     },
                     error: function () {
@@ -142,18 +142,13 @@
         return "";
     }
 
-    function  getLocalDate(str){
-        var date = new Date(str*1000);
+    function getLocalDate(str) {
+        var date = new Date(str * 1000);
         Y = date.getFullYear() + '-';
-        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
         D = date.getDate() + ' ';
-        return Y+M+D; //
+        return Y + M + D; //
     }
 </script>
-
-<div class="description">
-    <h3>Description</h3>
-
-</div>
 </body>
 </html>

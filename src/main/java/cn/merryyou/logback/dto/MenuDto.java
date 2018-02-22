@@ -25,6 +25,12 @@ public class MenuDto {
     @JsonProperty("iconCls")
     private String icon;
 
+    private String operation;
+
+    public String getOperation() {
+        return "<a class=\"mini-button\" iconCls=\"icon-edit\" onclick=\"edit('"+this.id+"')\">修改</a>  |  <a class=\"mini-button\" iconCls=\"icon-remove\" onclick=\"remove('\"+this.id+\"')\">删除</a>";
+    }
+
     @Override
     public String toString() {
         return "MenuDto{" +
