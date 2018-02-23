@@ -12,4 +12,8 @@ import java.util.List;
  */
 public interface SysMenuService {
     List<MenuDto> getMenus();
+
+    List<MenuDto> getMenusList();
+
+    List<MenuDto> getMenusListByRole(String roleId);
 }

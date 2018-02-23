@@ -46,18 +46,18 @@
                         <input name="email" class="mini-textbox" minValue="1" maxValue="200" />
                     </td>
                 </tr>
-                <#--<tr>-->
-                    <#--<td >更新时间：</td>-->
-                    <#--<td >-->
-                        <#--<input name="updateDate" class="mini-datepicker" value="25" minValue="1" maxValue="200" />-->
-                    <#--</td>-->
-                    <#--<td>-->
-
-                    <#--</td>-->
-                    <#--<td>-->
-
-                    <#--</td>-->
-                <#--</tr>-->
+                <tr>
+                    <td >所属角色：</td>
+                    <td  colspan="3">
+                        <div id="combobox2" class="mini-combobox" style="width:250px;" name="roles"  popupWidth="400" textField="roleName" valueField="id"
+                             url="${re.contextPath}/role/roleList"  multiSelect="true"  showClose="true" oncloseclick="onCloseClick" ajaxType="post">
+                            <div property="columns">
+                                <div header="ID" field="id"></div>
+                                <div header="角色名称" field="roleName"></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
             </table>
         </div>
     </fieldset>
@@ -79,7 +79,7 @@
 
         var json = mini.encode([o]);
         console.log(json);
-        $.ajax({
+       $.ajax({
             url: "${re.contextPath}/user/saveUser",
             type: 'post',
             data: { data: json },
@@ -110,7 +110,6 @@
                     form.setData(o);
                     form.setChanged(false);
 
-                    onDeptChanged();
                     mini.getbyName("position").setValue(o.position);
                 }
             });
@@ -136,17 +135,12 @@
     function onCancel(e) {
         CloseWindow("cancel");
     }
-    //////////////////////////////////
-    function onDeptChanged(e) {
-        var deptCombo = mini.getbyName("dept_id");
-        var positionCombo = mini.getbyName("position");
-        var dept_id = deptCombo.getValue();
 
-        positionCombo.load("../data/AjaxService.jsp?method=GetPositionsByDepartmenId&id=" + dept_id);
-        positionCombo.setValue("");
+    function onCloseClick(e) {
+        var obj = e.sender;
+        obj.setText("");
+        obj.setValue("");
     }
-
-
 
 </script>
 </body>

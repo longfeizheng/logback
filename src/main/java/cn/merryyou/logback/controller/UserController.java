@@ -111,7 +111,7 @@ public class UserController {
 
     @PostMapping(value = "/user/saveUser")
     @ResponseBody
-    public UserDto saveUser(@RequestParam String data) {
+    public Result saveUser(@RequestParam String data) {
         log.info(data);
         return sysUserService.save(data);
     }

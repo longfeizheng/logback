@@ -43,4 +43,6 @@ public class UserDto {
 
     @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateDate;
+
+    private String roles;
 }

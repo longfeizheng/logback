@@ -1,14 +1,13 @@
 package cn.merryyou.logback.controller;
 
 import cn.merryyou.logback.domain.PageResult;
+import cn.merryyou.logback.domain.Result;
 import cn.merryyou.logback.dto.RoleDto;
 import cn.merryyou.logback.service.SysRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -45,6 +44,25 @@ public class RoleController {
     @GetMapping("/role/addRole")
     public ModelAndView addUserView() {
         return new ModelAndView("/role/roleAdd");
+    }
+
+    @PostMapping(value = "/role/saveRole")
+    @ResponseBody
+    public Result saveUser(@RequestParam String data) {
+        log.info(data);
+        return sysRoleService.saveRole(data);
+    }
+
+    @GetMapping("/role/{id}")
+    @ResponseBody
+    public RoleDto findRole(@PathVariable("id") String id) {
+        return sysRoleService.findRole(id);
+    }
+
+    @RequestMapping("/role/del/{ids}")
+    @ResponseBody
+    public Result<String> delRoles(@PathVariable("ids") String ids) {
+        return sysRoleService.delRoles(ids);
     }
 
 }

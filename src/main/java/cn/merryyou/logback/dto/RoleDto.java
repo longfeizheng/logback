@@ -37,4 +37,18 @@ public class RoleDto {
      */
     @JsonSerialize(using = Date2LongSerializer.class)
     private Date createDate;
+
+    private String menuIds;
+
+    @Override
+    public String toString() {
+        return "RoleDto{" +
+                "id='" + id + '\'' +
+                ", roleName='" + roleName + '\'' +
+                ", remark='" + remark + '\'' +
+                ", createBy='" + createBy + '\'' +
+                ", createDate=" + createDate +
+                ", menuIds='" + menuIds + '\'' +
+                '}';
+    }
 }

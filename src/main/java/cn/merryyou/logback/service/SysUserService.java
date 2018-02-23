@@ -23,7 +23,7 @@ public interface SysUserService {
 
     UserDto findOne(String id);
 
-    UserDto save(String data);
+    Result save(String data);
 
     Result<String> delUsers(String ids);
 }

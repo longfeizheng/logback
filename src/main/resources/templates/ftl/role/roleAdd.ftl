@@ -3,26 +3,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>新增用户</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <script src="${re.contextPath}/plugin/boot.js" type="text/javascript"></script>
     <style type="text/css">
-        html, body
-        {
-            font-size:12px;
-            padding:0;
-            margin:0;
-            border:0;
-            height:100%;
-            overflow:hidden;
+        html, body {
+            font-size: 12px;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            height: 100%;
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
 
 <form id="form1" method="post">
-    <input name="id" class="mini-hidden" />
+    <input name="id" class="mini-hidden"/>
     <fieldset style="border:solid 1px #aaa;padding:3px;">
-        <legend >基本信息</legend>
+        <legend>基本信息</legend>
         <div style="padding:5px;">
             <table>
                 <tr>
@@ -31,16 +30,16 @@
                         <input name="roleName" class="mini-textbox" required="true"/>
                     </td>
                     <td style="width:70px;">角色描述：</td>
-                    <td >
-                        <input name="realName" class="mini-textbox" required="true"/>
+                    <td>
+                        <input name="remark" class="mini-textbox" required="true"/>
                     </td>
 
                 </tr>
             </table>
 
             <h1>权限分配</h1>
-            <input type="button" value="获取权限" onclick="getCheckedNodes()" />
-            <ul id="tree2" class="mini-tree" url="${re.contextPath}/menu/menus" style="width:200px;padding:5px;"
+            <input type="button" value="获取权限" onclick="getCheckedNodes()"/>
+            <ul id="tree2" class="mini-tree"  style="width:200px;padding:5px;"
                 showTreeIcon="true" textField="text" idField="id" parentField="pid" resultAsTree="false"
                 showCheckBox="true" checkRecursive="true"
                 onbeforenodecheck="onBeforeNodeCheck" allowSelect="false" enableHotTrack="false"
@@ -60,19 +59,21 @@
     var form = new mini.Form("form1");
 
     function SaveData() {
+        var tree = mini.get("tree2");
+        var value = tree.getValue(true);
         var o = form.getData();
-
+        o.menuIds = value;
+        console.log(o);
         form.validate();
         if (form.isValid() == false) return;
-
         var json = mini.encode([o]);
-        console.log(json);
         $.ajax({
-            url: "${re.contextPath}/user/saveUser",
+            url: "${re.contextPath}/role/saveRole",
             type: 'post',
-            data: { data: json },
+            data: {data: json},
             cache: false,
             success: function (text) {
+                alert(text.msg);
                 CloseWindow("save");
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -87,21 +88,26 @@
     //标准方法接口定义
     function SetData(data) {
         if (data.action == "edit") {
+            var tree = mini.get("tree2");
+            tree.load("${re.contextPath}/menu/"+ data.id);
+            tree.expandAll();
             //跨页面传递的数据对象，克隆后才可以安全使用
             data = mini.clone(data);
 
             $.ajax({
-                url: "${re.contextPath}/user/"+data.id,
+                url: "${re.contextPath}/role/" + data.id,
                 cache: false,
                 success: function (text) {
                     var o = mini.decode(text);
                     form.setData(o);
                     form.setChanged(false);
 
-                    onDeptChanged();
-                    mini.getbyName("position").setValue(o.position);
+//                    mini.getbyName("position").setValue(o.position);
                 }
             });
+        }else{
+            var tree = mini.get("tree2");
+            tree.load("${re.contextPath}/menu/menuList");
         }
     }
 
@@ -109,6 +115,7 @@
         var o = form.getData();
         return o;
     }
+
     function CloseWindow(action) {
         if (action == "close" && form.isChanged()) {
             if (confirm("数据被修改了，是否先保存？")) {
@@ -118,9 +125,11 @@
         if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
         else window.close();
     }
+
     function onOk(e) {
         SaveData();
     }
+
     function onCancel(e) {
         CloseWindow("cancel");
     }
@@ -128,9 +137,8 @@
     function getCheckedNodes() {
         var tree = mini.get("tree2");
 
-        var value = tree.getValue();
+        var value = tree.getValue(true);
         alert(value);
-
     }
 
     function onBeforeNodeCheck(e) {

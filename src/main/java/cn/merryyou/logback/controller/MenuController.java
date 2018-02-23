@@ -7,6 +7,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,6 +35,12 @@ public class MenuController {
         return new ModelAndView("menu/menuList",map);
     }
 
+    /**
+     * 侧边栏显示
+     * @param userDetails
+     * @param map
+     * @return
+     */
     @RequestMapping(value = "/menus")
     @ResponseBody
     public List<MenuDto> menus(@AuthenticationPrincipal UserDetails userDetails, Map<String, String> map) {
@@ -42,4 +49,24 @@ public class MenuController {
         return menus;
     }
 
+    /**
+     * 权限结合列表
+     * @param userDetails
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "/menuList")
+    @ResponseBody
+    public List<MenuDto> menuList(@AuthenticationPrincipal UserDetails userDetails, Map<String, String> map) {
+        map.put("username", userDetails.getUsername());
+        List<MenuDto> menus = sysMenuService.getMenusList();
+        return menus;
+    }
+
+    @RequestMapping(value = "/{roleId}")
+    @ResponseBody
+    public List<MenuDto> menuListByRole(@PathVariable("roleId")String roleId) {
+        List<MenuDto> menus = sysMenuService.getMenusListByRole(roleId);
+        return menus;
+    }
 }

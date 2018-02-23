@@ -1,10 +1,12 @@
 package cn.merryyou.logback.service.impl;
 
 import cn.merryyou.logback.domain.Result;
+import cn.merryyou.logback.domain.SysRole;
 import cn.merryyou.logback.domain.SysUser;
 import cn.merryyou.logback.dto.UserDto;
 import cn.merryyou.logback.enums.ResultEnum;
 import cn.merryyou.logback.properties.SecurityConstants;
+import cn.merryyou.logback.repository.SysRoleRepository;
 import cn.merryyou.logback.repository.SysUserRepository;
 import cn.merryyou.logback.service.SysUserService;
 import cn.merryyou.logback.utils.ResultUtil;
@@ -35,6 +37,9 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Autowired
     private SysUserRepository userRepository;
+
+    @Autowired
+    private SysRoleRepository roleRepository;
 
     @Override
     public SysUser save(SysUser user) {
@@ -68,23 +73,40 @@ public class SysUserServiceImpl implements SysUserService {
         if (sysUser != null) {
             UserDto userDto = new UserDto();
             BeanUtils.copyProperties(sysUser, userDto);
+            List<SysRole> roleList = sysUser.getRoles();
+            String roles = "";
+            if (roleList != null && roleList.size() > 0) {
+                for (SysRole role : roleList) {
+                    roles += role.getId() + ",";
+                }
+            }
+            userDto.setRoles(roles);
             return userDto;
         }
         return null;
     }
 
     @Override
-    public UserDto save(String data) {
+    public Result save(String data) {
         List<UserDto> userDtoList = new Gson().fromJson(data,
                 new TypeToken<List<UserDto>>() {
                 }.getType());
         UserDto userDto = userDtoList.get(0);
+        String roles = userDto.getRoles();
+        if (StringUtils.isEmpty(roles)) return ResultUtil.error(ResultEnum.FAIL.getCode(), "请选择该用户角色！");
+        List<SysRole> roleList = new ArrayList<>();
+        SysRole sysRole;
+        for (String str : roles.split(",")) {
+            sysRole = roleRepository.findOne(str);
+            roleList.add(sysRole);
+        }
         SysUser sysUser = new SysUser();
         BeanUtils.copyProperties(userDto, sysUser);
         sysUser.setPassword(bCryptPasswordEncoder.encode(SecurityConstants.DEFAULT_PASSWORD));
+        sysUser.getRoles().addAll(roleList);
         SysUser user = userRepository.save(sysUser);
         BeanUtils.copyProperties(user, userDto);
-        return userDto;
+        return ResultUtil.success("用户保存成功！");
     }
 
     @Override
