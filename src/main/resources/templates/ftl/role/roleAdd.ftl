@@ -39,7 +39,7 @@
 
             <h1>权限分配</h1>
             <input type="button" value="获取权限" onclick="getCheckedNodes()"/>
-            <ul id="tree2" class="mini-tree"  style="width:200px;padding:5px;"
+            <ul id="tree2" class="mini-tree" url="${re.contextPath}/menu/menuList" style="width:200px;padding:5px;"
                 showTreeIcon="true" textField="text" idField="id" parentField="pid" resultAsTree="false"
                 showCheckBox="true" checkRecursive="true"
                 onbeforenodecheck="onBeforeNodeCheck" allowSelect="false" enableHotTrack="false"
@@ -60,7 +60,8 @@
 
     function SaveData() {
         var tree = mini.get("tree2");
-        var value = tree.getValue(true);
+        //不含父节点
+        var value = tree.getValue();
         var o = form.getData();
         o.menuIds = value;
         console.log(o);
@@ -77,7 +78,6 @@
                 CloseWindow("save");
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                alert(1111);
                 alert(jqXHR.responseText);
                 CloseWindow();
             }
@@ -89,7 +89,6 @@
     function SetData(data) {
         if (data.action == "edit") {
             var tree = mini.get("tree2");
-            tree.load("${re.contextPath}/menu/"+ data.id);
             tree.expandAll();
             //跨页面传递的数据对象，克隆后才可以安全使用
             data = mini.clone(data);
@@ -99,15 +98,18 @@
                 cache: false,
                 success: function (text) {
                     var o = mini.decode(text);
+                    //设置数的选中状态
+                    console.log(o.menuIds);
+                    var nodes = tree.getAllChildNodes(tree.getRootNode());
+                    for(var i=0;i<nodes.length;i++){
+                        if(o.menuIds.indexOf(nodes[i]['id'])>=0){
+                            tree.checkNode(nodes[i]);
+                        }
+                    }
                     form.setData(o);
                     form.setChanged(false);
-
-//                    mini.getbyName("position").setValue(o.position);
                 }
             });
-        }else{
-            var tree = mini.get("tree2");
-            tree.load("${re.contextPath}/menu/menuList");
         }
     }
 

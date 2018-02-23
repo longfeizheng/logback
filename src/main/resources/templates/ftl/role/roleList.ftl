@@ -61,7 +61,7 @@
         if (row) {
             mini.open({
                 url: "${re.contextPath}/role/addRole",
-                title: "编辑角色", width: 600, height: 400,
+                title: "编辑角色", width: 600, height: 600,
                 onload: function () {
                     var iframe = this.getIFrameEl();
                     var data = {action: "edit", id: row.id};

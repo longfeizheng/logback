@@ -53,28 +53,4 @@ public class SysMenuServiceImpl implements SysMenuService {
         }
         return menuDtoList;
     }
-
-    @Override
-    public List<MenuDto> getMenusListByRole(String roleId) {
-        SysRole sysRole = roleRepository.findOne(roleId);
-        List<SysMenu> roleMenus = sysRole.getMenus();
-        String menuIds = "";
-        if (roleMenus != null && roleMenus.size() > 0) {
-            for(int i=0;i<roleMenus.size();i++){
-                menuIds += roleMenus.get(i).getId();
-            }
-        }
-        List<MenuDto> menuDtoList = new ArrayList<>();
-        List<SysMenu> menuList = repository.findAll();
-        MenuDto menuDto;
-        for (SysMenu sysMenu : menuList) {
-            menuDto = new MenuDto();
-            BeanUtils.copyProperties(sysMenu, menuDto);
-            if (menuIds.indexOf(menuDto.getId()) >= 0) {
-                menuDto.setChecked(true);
-            }
-            menuDtoList.add(menuDto);
-        }
-        return menuDtoList;
-    }
 }

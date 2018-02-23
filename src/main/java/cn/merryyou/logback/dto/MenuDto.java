@@ -25,8 +25,6 @@ public class MenuDto {
     @JsonProperty("iconCls")
     private String icon;
 
-    private boolean checked = false;
-
     @Override
     public String toString() {
         return "MenuDto{" +

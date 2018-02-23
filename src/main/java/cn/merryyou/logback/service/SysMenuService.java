@@ -15,5 +15,4 @@ public interface SysMenuService {
 
     List<MenuDto> getMenusList();
 
-    List<MenuDto> getMenusListByRole(String roleId);
 }
