@@ -1,11 +1,11 @@
 package cn.merryyou.logback.domain;
 
-import cn.merryyou.logback.serializer.Date2LongSerializer;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -55,7 +55,8 @@ public class SysRole implements Serializable {
     /**
      * 创建时间
      */
-    @JsonSerialize(using = Date2LongSerializer.class)
+    @CreatedDate
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createDate;
 
     /**
