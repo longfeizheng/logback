@@ -9,6 +9,7 @@ import cn.merryyou.logback.service.SysUserService;
 import cn.merryyou.logback.social.SocialUserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.social.connect.Connection;
@@ -103,6 +104,7 @@ public class UserController {
         return sysUserService.findOne(id);
     }
 
+    @PreAuthorize("hasAuthority('user:del')")
     @RequestMapping("/user/del/{ids}")
     @ResponseBody
     public Result<String> delUsers(@PathVariable("ids") String ids) {

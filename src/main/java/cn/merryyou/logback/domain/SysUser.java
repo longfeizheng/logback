@@ -8,15 +8,11 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.social.security.SocialUserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created on 2018/1/28 0028.
@@ -30,6 +26,19 @@ import java.util.List;
 @DynamicInsert
 @DynamicUpdate
 public class SysUser implements Serializable, SocialUserDetails {
+
+    public SysUser() {
+    }
+
+    @Transient
+    private List<GrantedAuthority> authorities;
+
+    public SysUser(String username, String password,List< GrantedAuthority> authorities) {
+        this.username = username;
+        this.password = password;
+        this.authorities= authorities ;
+    }
+
     private static final long serialVersionUID = 6531851807610479464L;
     /**
      * 主键
@@ -103,7 +112,7 @@ public class SysUser implements Serializable, SocialUserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.commaSeparatedStringToAuthorityList("ADMIN");
+        return authorities;
     }
 
     @Override

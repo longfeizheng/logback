@@ -89,4 +89,22 @@ public class SysMenuServiceImpl implements SysMenuService {
 
         return urls;
     }
+
+    @Override
+    public String getPermissions(String username) {
+        Set<SysMenu> mesnus = new HashSet<>();
+        String permissions = "";
+        SysUser sysUser = userRepository.findByUsername(username);
+        List<SysRole> roles = sysUser.getRoles();
+        if (roles != null && roles.size() > 0) {
+            for (SysRole sysRole : roles) {
+                mesnus.addAll(sysRole.getMenus());
+            }
+        }
+
+        for (SysMenu sysMenu : mesnus) {
+            permissions += sysMenu.getPermission() + ",";
+        }
+        return permissions.substring(0, permissions.length());
+    }
 }

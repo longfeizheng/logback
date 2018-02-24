@@ -18,4 +18,6 @@ public interface SysMenuService {
 
     Set<String> getUrlByname(String username);
 
+    String getPermissions(String username);
+
 }
