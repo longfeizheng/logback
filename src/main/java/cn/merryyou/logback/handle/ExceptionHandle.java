@@ -1,10 +1,12 @@
 package cn.merryyou.logback.handle;
 
 import cn.merryyou.logback.domain.Result;
+import cn.merryyou.logback.enums.ResultEnum;
 import cn.merryyou.logback.exception.PersonException;
 import cn.merryyou.logback.utils.ResultUtil;
 import cn.merryyou.logback.validate.code.ValidateCodeException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,6 +30,9 @@ public class ExceptionHandle {
         } else if (e instanceof ValidateCodeException) {
             ValidateCodeException validateCodeException = (ValidateCodeException) e;
             return ResultUtil.error(validateCodeException.getCode(), validateCodeException.getMessage());
+        }else if (e instanceof AccessDeniedException) {
+            AccessDeniedException accessDeniedException = (AccessDeniedException) e;
+            return ResultUtil.error(ResultEnum.FAIL.getCode(),accessDeniedException.getMessage());
         } else {
             log.error("【系统异常】{}", e);
             return ResultUtil.error(-1, "未知错误");

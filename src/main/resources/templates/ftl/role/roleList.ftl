@@ -94,7 +94,7 @@
                 $.ajax({
                     url: "${re.contextPath}/role/del/" + id,
                     success: function (text) {
-                        alert(text.msg);
+                        alert(text.data);
                         grid.reload();
                     },
                     error: function () {

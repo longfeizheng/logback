@@ -22,6 +22,8 @@ public class MenuDto {
 
     private String url;
 
+    private String permission;
+
     @JsonProperty("iconCls")
     private String icon;
 

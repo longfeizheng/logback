@@ -27,7 +27,7 @@ public class SysMenuServiceImplTest {
 
     @Test
     public void getMenusTest() throws Exception{
-        List<MenuDto> menus = sysMenuService.getMenus();
+        List<MenuDto> menus = sysMenuService.getMenus("admin",0);
         log.info(menus.toString());
     }
 }

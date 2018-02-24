@@ -110,7 +110,7 @@
                     form.setData(o);
                     form.setChanged(false);
 
-                    mini.getbyName("position").setValue(o.position);
+//                    mini.getbyName("position").setValue(o.position);
                 }
             });
         }

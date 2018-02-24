@@ -44,7 +44,7 @@ public class MenuController {
     @ResponseBody
     public List<MenuDto> menus(@AuthenticationPrincipal UserDetails userDetails, Map<String, String> map) {
         map.put("username", userDetails.getUsername());
-        List<MenuDto> menus = sysMenuService.getMenus();
+        List<MenuDto> menus = sysMenuService.getMenus(userDetails.getUsername(),0);//菜单地址
         return menus;
     }
 

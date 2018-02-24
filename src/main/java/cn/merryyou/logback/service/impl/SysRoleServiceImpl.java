@@ -92,7 +92,7 @@ public class SysRoleServiceImpl extends MerryyouBaseServiceImpl<SysRole> impleme
         for (String id : roleIds) {
             List<SysUser> users = roleRepository.getOne(id).getUsers();
             if (users != null && users.size() > 0) {
-                ResultUtil.success("选择的角色已绑定用户！");
+                return ResultUtil.success("选择的角色已绑定用户！");
             }
             roleRepository.delete(id);
         }

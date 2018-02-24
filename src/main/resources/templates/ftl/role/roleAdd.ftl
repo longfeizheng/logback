@@ -40,8 +40,8 @@
             <h1>权限分配</h1>
             <input type="button" value="获取权限" onclick="getCheckedNodes()"/>
             <ul id="tree2" class="mini-tree" url="${re.contextPath}/menu/menuList" style="width:200px;padding:5px;"
-                showTreeIcon="true" textField="text" idField="id" parentField="pid" resultAsTree="false"
-                showCheckBox="true" checkRecursive="true"
+                showTreeIcon="false" textField="text" idField="id" parentField="pid" resultAsTree="false"
+                showCheckBox="true" checkRecursive="false" autoCheckParent="false"
                 onbeforenodecheck="onBeforeNodeCheck" allowSelect="false" enableHotTrack="false"
 
             >
@@ -60,8 +60,9 @@
 
     function SaveData() {
         var tree = mini.get("tree2");
-        //不含父节点
-        var value = tree.getValue();
+
+        var value = tree.getValue(true);
+        console.log(value);
         var o = form.getData();
         o.menuIds = value;
         console.log(o);
@@ -136,10 +137,10 @@
         CloseWindow("cancel");
     }
 
-    function getCheckedNodes() {
+    function getCheckedNodes() {true
         var tree = mini.get("tree2");
 
-        var value = tree.getValue(true);
+        var value = tree.getValue();
         alert(value);
     }
 

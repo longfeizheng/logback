@@ -2,14 +2,15 @@ package cn.merryyou.logback.service.impl;
 
 import cn.merryyou.logback.domain.SysUser;
 import cn.merryyou.logback.service.RbacService;
+import cn.merryyou.logback.service.SysMenuService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -22,6 +23,10 @@ import java.util.Set;
 @Component("rbacService")
 @Slf4j
 public class RbacServiceImpl implements RbacService {
+
+    @Autowired
+    private SysMenuService sysMenuService;
+
     /**
      * uri匹配工具
      */
@@ -40,7 +45,7 @@ public class RbacServiceImpl implements RbacService {
                 hasPermission = true;
             } else {
                 //读取用户所拥有权限所有的URL 在这里全部返回true
-                Set<String> urls = new HashSet<>();
+                Set<String> urls = sysMenuService.getUrlByname(((SysUser) principal).getUsername());
 
                 for (String url : urls) {
                     if (antPathMatcher.match(url, request.getRequestURI())) {

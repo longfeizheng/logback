@@ -80,7 +80,7 @@ public class  SysMenu implements Serializable {
      */
     private String permission;
 
-    private Byte menuType;
+    private int menuType;
 
 
     @Override

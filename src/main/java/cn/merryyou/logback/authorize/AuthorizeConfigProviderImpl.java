@@ -23,5 +23,6 @@ public class AuthorizeConfigProviderImpl implements AuthorizeConfigProvider {
 //                .access("@rbacService.hasPermission(request,authentication)");
 //        config.antMatchers("/perons").access("hasRole('ADMIN')").anyRequest().authenticated();
         config.anyRequest().authenticated();
+//        config.anyRequest().access("@rbacService.hasPermission(request,authentication)");
     }
 }
