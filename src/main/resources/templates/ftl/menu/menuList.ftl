@@ -8,11 +8,8 @@
 </head>
 <body>
 <h1>菜单管理</h1>
-<div>
-    <a class="mini-button" iconCls="icon-add" onclick="add()">新增</a>&nbsp;
-</div>
 <div id="treegrid1" class="mini-treegrid" style="width:700px;height:280px;"
-     url="${re.contextPath}/menu/menus" showTreeIcon="true"
+     url="${re.contextPath}/menu/menus" showTreeIcon="false"
      treeColumn="menuname" idField="id" parentField="pid" resultAsTree="false"
      allowResize="true" expandOnLoad="true"
 >
@@ -20,7 +17,6 @@
         <div type="indexcolumn"></div>
         <div name="menuname" field="text" width="160">菜单名称</div>
         <div field="url" width="80">地址</div>
-        <div field="icon" width="60" align="right">图标</div>
     </div>
 </div>
 <script>
