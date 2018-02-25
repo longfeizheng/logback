@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,6 +23,7 @@ import java.util.List;
 @Entity
 @Data
 @DynamicInsert
+@EntityListeners(AuditingEntityListener.class)
 @DynamicUpdate
 public class  SysMenu implements Serializable {
 

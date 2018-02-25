@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1>角色管理</h1>
+<#include "../common/message.ftl">
 <div style="width:800px;">
     <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
         <table style="width:100%;">
@@ -83,26 +84,40 @@
     function remove() {
         var rows = grid.getSelecteds();
         if (rows.length > 0) {
-            if (confirm("确定删除选中记录？")) {
-                var ids = [];
-                for (var i = 0, l = rows.length; i < l; i++) {
-                    var r = rows[i];
-                    ids.push(r.id);
-                }
-                var id = ids.join(',');
-                grid.loading("操作中，请稍后......");
-                $.ajax({
-                    url: "${re.contextPath}/role/del/" + id,
-                    success: function (text) {
-                        alert(text.data);
-                        grid.reload();
-                    },
-                    error: function () {
+            mini.confirm("确定删除记录？", "确定？",
+                    function (action) {
+                        if (action == "ok") {
+                            var ids = [];
+                            for (var i = 0, l = rows.length; i < l; i++) {
+                                var r = rows[i];
+                                ids.push(r.id);
+                            }
+                            var id = ids.join(',');
+                            grid.loading("操作中，请稍后......");
+                            $.ajax({
+                                url: "${re.contextPath}/role/del/" + id,
+                                success: function (text) {
+//                                    alert(text.data);
+                                    if(text.data =="选择的角色已绑定用户！" ){
+                                        notify("选择的角色已绑定用户！");
+                                    }else{
+                                        showTips(text.data);
+                                    }
+                                    grid.reload();
+                                },
+                                error: function () {
+                                }
+                            });
+                        } else {
+//                            alert("不删除!");
+                        }
                     }
-                });
-            }
+            );
+//            if (confirm("确定删除选中记录？")) {
+//
+//            }
         } else {
-            alert("请选中一条记录");
+            notify("请选中一条记录");
         }
     }
 

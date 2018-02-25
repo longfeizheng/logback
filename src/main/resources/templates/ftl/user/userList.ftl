@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1>用户管理</h1>
+<#include "../common/message.ftl">
 <div style="width:800px;">
     <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
         <table style="width:100%;">
@@ -79,7 +80,8 @@
             });
 
         } else {
-            alert("请选中一条记录");
+            notify("请选中一条记录");
+//            alert("请选中一条记录");
         }
 
     }
@@ -87,26 +89,39 @@
     function remove() {
         var rows = grid.getSelecteds();
         if (rows.length > 0) {
-            if (confirm("确定删除选中记录？")) {
-                var ids = [];
-                for (var i = 0, l = rows.length; i < l; i++) {
-                    var r = rows[i];
-                    ids.push(r.id);
-                }
-                var id = ids.join(',');
-                grid.loading("操作中，请稍后......");
-                $.ajax({
-                    url: "${re.contextPath}/user/del/" + id,
-                    success: function (text) {
-                        alert(text.msg);
-                        grid.reload();
-                    },
-                    error: function () {
+            mini.confirm("确定删除记录？", "确定？",
+                    function (action) {
+                        if (action == "ok") {
+                            var ids = [];
+                            for (var i = 0, l = rows.length; i < l; i++) {
+                                var r = rows[i];
+                                ids.push(r.id);
+                            }
+                            var id = ids.join(',');
+                            grid.loading("操作中，请稍后......");
+                            $.ajax({
+                                url: "${re.contextPath}/user/del/" + id,
+                                success: function (text) {
+                                    if (text.code == 105) {
+                                        notify(text.msg);
+                                    } else {
+                                        showTips(text.data);
+                                    }
+                                    grid.reload();
+                                },
+                                error: function () {
+                                }
+                            });
+                        } else {
+//                            alert("不删除!");
+                        }
                     }
-                });
-            }
+            );
+//            if (confirm("确定删除选中记录？")) {
+//
+//            }
         } else {
-            alert("请选中一条记录");
+            notify("请选中一条记录");
         }
     }
 

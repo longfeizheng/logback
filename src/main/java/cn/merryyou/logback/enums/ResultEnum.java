@@ -14,7 +14,8 @@ public enum  ResultEnum {
     MIDDLE_SCHOOL(101, "你可能在上初中"),
     SECKILL_OVER(102,"秒杀结束"),
     CODE_ERROT(103,"验证码验证失败"),
-    SESSION_INVALID(104,"session失效")
+    SESSION_INVALID(104,"session失效"),
+    ACCESS_DENIED(105,"您没有该权限！")
     ;
 
     private Integer code;

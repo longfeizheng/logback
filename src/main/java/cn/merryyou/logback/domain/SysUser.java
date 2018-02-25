@@ -6,13 +6,17 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.social.security.SocialUserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created on 2018/1/28 0028.
@@ -23,6 +27,7 @@ import java.util.*;
  */
 @Entity
 @Data
+@EntityListeners(AuditingEntityListener.class)
 @DynamicInsert
 @DynamicUpdate
 public class SysUser implements Serializable, SocialUserDetails {
