@@ -16,6 +16,7 @@
             <div class="login_form">
                 <div class="login_title">
                 ${username!''}<br/><br/>
+                    <a href="${re.contextPath}/main">后台管理</a><br/>
                     <a href="${re.contextPath}/signOut">退出</a>
                     <form id="bindingForm" method="post">
                         <input id="method" type="hidden" name="_method" value="delete"/>
