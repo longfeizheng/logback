@@ -110,7 +110,7 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/signOut")//默认退出地址/logout
-                .logoutSuccessUrl("/register")//退出之后跳转到注册页面
+                .logoutSuccessUrl("/")//退出之后跳转到注册页面
                 .deleteCookies("JSESSIONID")
                 .and()
                 .authorizeRequests().antMatchers(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,

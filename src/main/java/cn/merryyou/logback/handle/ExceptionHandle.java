@@ -31,7 +31,6 @@ public class ExceptionHandle {
             ValidateCodeException validateCodeException = (ValidateCodeException) e;
             return ResultUtil.error(validateCodeException.getCode(), validateCodeException.getMessage());
         } else if (e instanceof AccessDeniedException) {
-            AccessDeniedException accessDeniedException = (AccessDeniedException) e;
             return ResultUtil.error(ResultEnum.ACCESS_DENIED.getCode(), ResultEnum.ACCESS_DENIED.getMsg());
         } else {
             log.error("【系统异常】{}", e);

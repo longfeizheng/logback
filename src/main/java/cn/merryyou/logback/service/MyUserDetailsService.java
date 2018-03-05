@@ -35,14 +35,18 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("【MyUserDetailsService】 loadUserByUsername 表单登录用户名  username={}", username);
+        String permissions = "";
 
         SysUser user = repository.findByUsername(username);
         String password = passwordEncoder.encode("123456");
 
 //        log.info("数据库密码是:password={}",password);
 //        return user;
-        String permissions = sysMenuService.getPermissions(username);
-        log.info(permissions);
+        if (user != null) {
+            permissions = sysMenuService.getPermissions(username);
+            log.info(permissions);
+        }
+
         return new SysUser(username, user.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
 //        return new User(username,password, AuthorityUtils.commaSeparatedStringToAuthorityList("ADMIN"));
 

@@ -111,6 +111,7 @@ public class UserController {
         return sysUserService.delUsers(ids);
     }
 
+    @PreAuthorize("hasAnyAuthority('user:select','user:update')")
     @PostMapping(value = "/user/saveUser")
     @ResponseBody
     public Result saveUser(@RequestParam String data) {
