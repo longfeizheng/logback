@@ -41,7 +41,7 @@
             <input type="button" value="获取权限" onclick="getCheckedNodes()"/>
             <ul id="tree2" class="mini-tree" url="${re.contextPath}/menu/menuList" style="width:200px;padding:5px;"
                 showTreeIcon="false" textField="text" idField="id" parentField="pid" resultAsTree="false"
-                showCheckBox="true" checkRecursive="false" autoCheckParent="false"
+                showCheckBox="true" checkRecursive="true"
                 onbeforenodecheck="onBeforeNodeCheck" allowSelect="false" enableHotTrack="false"
 
             >
@@ -105,6 +105,8 @@
                     for(var i=0;i<nodes.length;i++){
                         if(o.menuIds.indexOf(nodes[i]['id'])>=0){
                             tree.checkNode(nodes[i]);
+                        }else{
+                            tree.uncheckNode(nodes[i]);
                         }
                     }
                     form.setData(o);
@@ -140,7 +142,7 @@
     function getCheckedNodes() {true
         var tree = mini.get("tree2");
 
-        var value = tree.getValue();
+        var value = tree.getValue(true);
         alert(value);
     }
 
