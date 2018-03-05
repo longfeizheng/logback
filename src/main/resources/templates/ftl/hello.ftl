@@ -1,3 +1,4 @@
+<#assign  sec=JspTaglibs["http://www.springframework.org/security/tags"] />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,5 +7,11 @@
 </head>
 <body align="center">
 <h2>Spring Security Demo</h2>
+    <@sec.authorize access="hasRole('ROLE_ADMIN')">
+    you can see this
+    </@sec.authorize>
+    <@sec.authorize access="isAnonymous()">
+    you can see isAnonymous
+    </@sec.authorize>
 </body>
 </html>

@@ -2,6 +2,7 @@ package cn.merryyou.logback.security;
 
 import cn.merryyou.logback.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import cn.merryyou.logback.authorize.AuthorizeConfigProvider;
+import cn.merryyou.logback.config.ClassPathTldsLoader;
 import cn.merryyou.logback.properties.SecurityConstants;
 import cn.merryyou.logback.properties.SecurityProperties;
 import cn.merryyou.logback.validate.code.ValidateCodeSecurityConfig;
@@ -163,5 +164,12 @@ public class MerryyouSecurityConfig extends WebSecurityConfigurerAdapter {
     @ConditionalOnMissingBean(PasswordEncoder.class)
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+
+
+    @Bean
+    @ConditionalOnMissingBean(ClassPathTldsLoader.class)
+    public ClassPathTldsLoader classPathTldsLoader(){
+        return new ClassPathTldsLoader();
     }
 }
