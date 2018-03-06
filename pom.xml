@@ -176,7 +176,11 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/libs/spring-social-weibo-1.0.1-SNAPSHOT.jar</systemPath>
 		</dependency>
-
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
