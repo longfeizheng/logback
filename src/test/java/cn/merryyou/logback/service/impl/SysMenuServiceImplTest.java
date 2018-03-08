@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created on 2018/2/8.
@@ -26,8 +27,27 @@ public class SysMenuServiceImplTest {
     private SysMenuService sysMenuService;
 
     @Test
-    public void getMenusTest() throws Exception{
-        List<MenuDto> menus = sysMenuService.getMenus("admin",0);
+    public void getMenusTest() throws Exception {
+        List<MenuDto> menus = sysMenuService.getMenus("admin", 0);
         log.info(menus.toString());
+    }
+
+    @Test
+    public void getMenusListTest() throws Exception {
+        List<MenuDto> menusList = sysMenuService.getMenusList();
+        System.out.println(menusList.size());
+    }
+
+    @Test
+    public void getPermissionsTest() throws Exception {
+        String permissions = sysMenuService.getPermissions("admin");
+        log.info(permissions);
+
+    }
+
+    @Test
+    public void getUrlBynameTest() throws Exception {
+        Set<String> admin = sysMenuService.getUrlByname("admin");
+        System.out.println(admin.size());
     }
 }

@@ -27,6 +27,24 @@ public class MenuDto {
     @JsonProperty("iconCls")
     private String icon;
 
+    public MenuDto() {
+    }
+
+    public MenuDto(String id, String pId, String name, String url) {
+        this.id = id;
+        this.pId = pId;
+        this.name = name;
+        this.url = url;
+    }
+
+    public MenuDto(String id, String pId, String name, String url, String permission) {
+        this.id = id;
+        this.pId = pId;
+        this.name = name;
+        this.url = url;
+        this.permission = permission;
+    }
+
     @Override
     public String toString() {
         return "MenuDto{" +
