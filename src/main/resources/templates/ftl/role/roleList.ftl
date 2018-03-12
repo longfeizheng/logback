@@ -1,3 +1,4 @@
+<#assign  sec=JspTaglibs["http://www.springframework.org/security/tags"] />
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -14,9 +15,15 @@
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
+                     <@sec.authorize access="hasAuthority('role:add')">
                     <a class="mini-button" iconCls="icon-add" onclick="add()">增加</a>
+                     </@sec.authorize>
+                     <@sec.authorize access="hasAuthority('role:update')">
                     <a class="mini-button" iconCls="icon-add" onclick="edit()">编辑</a>
+                     <@sec.authorize access="hasAuthority('role:del')">
+                      </@sec.authorize>
                     <a class="mini-button" iconCls="icon-remove" onclick="remove()">删除</a>
+                     </@sec.authorize>
                 </td>
                 <td style="white-space:nowrap;">
                     <input id="key" class="mini-textbox" emptyText="请输入姓名" style="width:150px;" onenter="onKeyEnter"/>

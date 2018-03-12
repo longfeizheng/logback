@@ -2,6 +2,7 @@ package cn.merryyou.logback.handle;
 
 import cn.merryyou.logback.enums.ResultEnum;
 import cn.merryyou.logback.utils.ResultUtil;
+import cn.merryyou.logback.validate.code.ValidateCodeException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -37,7 +38,10 @@ public class MerryyouAuthenticationfailureHandler extends SimpleUrlAuthenticatio
         response.setContentType("application/json;charset=UTF-8");
         if(exception instanceof BadCredentialsException){
             message = "用户名或密码错误";
+            response.getWriter().write(objectMapper.writeValueAsString(ResultUtil.error(ResultEnum.FAIL.getCode(), message)));
+        }else if(exception instanceof ValidateCodeException){
+            response.getWriter().write(objectMapper.writeValueAsString(ResultUtil.error(ResultEnum.CODE_ERROT.getCode(), exception.getMessage())));
         }
-        response.getWriter().write(objectMapper.writeValueAsString(ResultUtil.error(ResultEnum.FAIL.getCode(), message)));
+
     }
 }

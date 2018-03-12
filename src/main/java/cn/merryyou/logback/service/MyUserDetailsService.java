@@ -45,11 +45,9 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
         if (user != null) {
             permissions = sysMenuService.getPermissions(username);
             log.info(permissions);
+            return new SysUser(username, user.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
         }
-
-        return new SysUser(username, user.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
-//        return new User(username,password, AuthorityUtils.commaSeparatedStringToAuthorityList("ADMIN"));
-
+        return new SysUser(username, "", AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
     }
 
     @Override

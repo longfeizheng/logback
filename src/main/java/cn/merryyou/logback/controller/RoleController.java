@@ -47,7 +47,7 @@ public class RoleController {
         return new ModelAndView("/role/roleAdd");
     }
 
-    @PreAuthorize("hasAuthority('role:add')")
+    @PreAuthorize("hasAnyAuthority('role:add,role:update')")
     @PostMapping(value = "/role/saveRole")
     @ResponseBody
     public Result saveUser(@RequestParam String data) {
@@ -61,6 +61,7 @@ public class RoleController {
         return sysRoleService.findRole(id);
     }
 
+    @PreAuthorize("hasAuthority('role:del')")
     @RequestMapping("/role/del/{ids}")
     @ResponseBody
     public Result<String> delRoles(@PathVariable("ids") String ids) {
