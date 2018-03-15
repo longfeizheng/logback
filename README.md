@@ -19,7 +19,7 @@
 1. idea 配置lombok插件,参考[lombok-intellij-plugin](https://github.com/mplushnikov/lombok-intellij-plugin/)
 2. 修改application.yml中数据源信息，执行db文件夹下面的sql文件
 3. 修改application-dev.yml 中redis连接信息
-4. 社交登录需配置host文件：`127.0.0.1 www.ictgu.cn` 微信`appid`已过期
+4. 社交登录需配置host文件：`127.0.0.1 www.merryyou.cn` 微信`appid`已过期
 
 ---
 [![https://raw.githubusercontent.com/longfeizheng/longfeizheng.github.io/master/images/wechat/xiaochengxu.png](https://raw.githubusercontent.com/longfeizheng/longfeizheng.github.io/master/images/wechat/xiaochengxu.png "https://raw.githubusercontent.com/longfeizheng/longfeizheng.github.io/master/images/wechat/xiaochengxu.png")](https://raw.githubusercontent.com/longfeizheng/longfeizheng.github.io/master/images/wechat/xiaochengxu.png "https://raw.githubusercontent.com/longfeizheng/longfeizheng.github.io/master/images/wechat/xiaochengxu.png")
