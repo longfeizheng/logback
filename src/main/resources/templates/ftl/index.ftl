@@ -27,7 +27,7 @@
                     <div class="other_right" style="text-align: center;">
                         <a id="bindingQq" href="javascript:void(0)"><i class="fa fa-qq fa-2x"></i></a>
                         <a id="bindingWeixin" href="javascript:void(0)"><i class="fa fa-weixin fa-2x"></i></a>
-                        <a href="javascript:void(0)"><i class="fa fa-weibo fa-2x"></i></a>
+                        <a id="bindingWeibo" href="javascript:void(0)"><i class="fa fa-weibo fa-2x"></i></a>
                     </div>
                 </div>
             </div>
@@ -63,6 +63,15 @@
                         $("#bindingWeixin").attr("title", "绑定")
                         $(".fa-weixin").removeClass("social_title");
                     }
+                    if (data.data.weibo) {
+                        //解绑
+                        $("#bindingWeibo").attr("title", "解绑")
+                        $(".fa-weibo").addClass("social_title");
+                    } else {
+                        //绑定
+                        $("#bindingWeibo").attr("title", "绑定")
+                        $(".fa-weibo").removeClass("social_title");
+                    }
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -89,6 +98,19 @@
         $("#bindingWeixin").click(function () {
             var title = $("#bindingWeixin").attr("title");
             $("#bindingForm").attr("action","${re.contextPath}/connect/weixin");
+            if ("绑定" === title) {
+                //执行绑定炒作
+                $("#method").val("post");
+                $("#bindingForm").submit();
+            } else {
+                //执行解绑事件
+                $("#method").val("delete");
+                $("#bindingForm").submit();
+            }
+        });
+        $("#bindingWeibo").click(function () {
+            var title = $("#bindingWeibo").attr("title");
+            $("#bindingForm").attr("action","${re.contextPath}/connect/weibo");
             if ("绑定" === title) {
                 //执行绑定炒作
                 $("#method").val("post");
