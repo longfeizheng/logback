@@ -21,6 +21,10 @@
 3. 修改application-dev.yml 中redis连接信息
 4. 社交登录需配置host文件：`127.0.0.1 www.merryyou.cn` 微信`appid`已过期
 
+## 注意
+
+本项目是用于学习Spring Security,但miniui并非开源项目，仅作为演示所用。
+
 ---
 [![https://raw.githubusercontent.com/longfeizheng/longfeizheng.github.io/master/images/wechat/xiaochengxu.png](https://raw.githubusercontent.com/longfeizheng/longfeizheng.github.io/master/images/wechat/xiaochengxu.png "https://raw.githubusercontent.com/longfeizheng/longfeizheng.github.io/master/images/wechat/xiaochengxu.png")](https://raw.githubusercontent.com/longfeizheng/longfeizheng.github.io/master/images/wechat/xiaochengxu.png "https://raw.githubusercontent.com/longfeizheng/longfeizheng.github.io/master/images/wechat/xiaochengxu.png")
 
