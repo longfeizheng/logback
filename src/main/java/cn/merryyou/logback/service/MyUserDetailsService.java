@@ -32,16 +32,18 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
     @Autowired
     private SysMenuService sysMenuService;
 
+    /**
+     * 从数据库查询用户信息
+     * @param username
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("【MyUserDetailsService】 loadUserByUsername 表单登录用户名  username={}", username);
         String permissions = "";
 
         SysUser user = repository.findByUsername(username);
-        String password = passwordEncoder.encode("123456");
-
-//        log.info("数据库密码是:password={}",password);
-//        return user;
         if (user != null) {
             permissions = sysMenuService.getPermissions(username);
             log.info(permissions);
@@ -50,13 +52,15 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
         return new SysUser(username, "", AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
     }
 
+    /**
+     * 社交登录查询用户信息
+     * @param userId
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public SocialUserDetails loadUserByUserId(String userId) throws UsernameNotFoundException {
         SysUser user = repository.findByUsername(userId);
-//        String password = passwordEncoder.encode("123456");
-
-//        log.info("数据库密码是:password={}",password);
         return user;
-//        return new SocialUser(userId,"123456", AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_ADMIN"));
     }
 }
