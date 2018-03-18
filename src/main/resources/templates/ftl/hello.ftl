@@ -8,6 +8,8 @@
 </head>
 <body align="center">
 <h2>Spring Security Demo</h2>
+
+<a href="https://longfeizheng.github.io/categories/#Security">Spring Security系列博客</a>
     <@sec.authorize access="hasRole('ROLE_ADMIN')">
     you can see this
     </@sec.authorize>
