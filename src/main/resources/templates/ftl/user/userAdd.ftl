@@ -85,7 +85,12 @@
             data: { data: json },
             cache: false,
             success: function (text) {
-                CloseWindow("save");
+                if(text.code ===0 ){
+                    CloseWindow("save");
+                }else{
+                    alert(text.msg);
+                }
+
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 alert(1111);
