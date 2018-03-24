@@ -15,6 +15,7 @@
 13. [Spring Security源码分析十三：Spring Security 基于表达式的权限控制](https://longfeizheng.github.io/2018/01/30/Spring-Security%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%8D%81%E4%B8%89-Spring-Security%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/)
 14. [Spring Security源码分析十四：Spring Social社交登录的绑定与解绑](https://longfeizheng.github.io/2018/02/02/Spring-Security源码分析十四-Spring-Social绑定与解绑/)
 15. [Spring Security源码分析十五：Spring Security 页面权限控制](https://longfeizheng.github.io/2018/03/06/Spring-Security%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%8D%81%E4%BA%94-Spring-Security%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/)
+16. [Spring Security源码分析十六：Spring Security项目实战](https://longfeizheng.github.io/2018/03/18/Spring-Security%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%8D%81%E5%85%AD-Spring-Security%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/)
 ## 启动方式
 1. idea 配置lombok插件,参考[lombok-intellij-plugin](https://github.com/mplushnikov/lombok-intellij-plugin/)
 2. 修改application.yml中数据源信息，执行db文件夹下面的sql文件
