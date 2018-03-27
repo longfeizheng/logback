@@ -3,7 +3,7 @@ spring:
     active: dev
   datasource:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/dbperson
+      url: jdbc:mysql://localhost:3306/dbperson?useUnicode=true&characterEncoding=UTF-8
       username: root
       password: admin
   jpa:
