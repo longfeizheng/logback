@@ -18,7 +18,7 @@
 16. [Spring Security源码分析十六：Spring Security项目实战](https://longfeizheng.github.io/2018/03/18/Spring-Security%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%8D%81%E5%85%AD-Spring-Security%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/)
 ## 启动方式
 1. idea 配置lombok插件,参考[lombok-intellij-plugin](https://github.com/mplushnikov/lombok-intellij-plugin/)
-2. 修改application.yml中数据源信息，执行db文件夹下面的sql文件
+2. 修改application.yml中数据源信息(启动会自动初始化数据库信息)
 3. 修改application-dev.yml 中redis连接信息
 4. 社交登录需配置host文件：`127.0.0.1 www.merryyou.cn` 微信`appid`已过期
 
