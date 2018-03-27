@@ -1,8 +1,25 @@
-server:
-  port: 8080
-#logging:
-#  pattern:
-#    console: "%d - %msg%n"
-##  path: D:/log/
-#  file: D:/log/logback.log
-#  level: debug
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://mysqldb:3306/dbperson?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: admin
+  redis:
+    host: redisdb
+    port: 6379
+  session:
+    store-type: redis
+merryyou:
+  security:
+    code:
+      image:
+        width: 90
+        height: 20
+        length: 4
+        expireIn: 30
+        url: /code/*
+    session:
+      maximumSessions: 1
+      maxSessionsPreventsLogin: false
+#      sessionInvalidUrl : /merryyou-session-invalid.html
+    loginType: JSON

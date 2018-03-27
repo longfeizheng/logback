@@ -1,11 +1,12 @@
-server:
-  port: 80
-  session:
-    timeout: 600
 spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ormtest?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: admin
   redis:
-    host: localhost
-    port: 6380
+    host: 127.0.0.1
+    port: 6379
   session:
     store-type: redis
 #logging:
