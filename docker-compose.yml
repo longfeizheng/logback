@@ -1,5 +1,15 @@
 version: '2'
 services:
+  nginx:
+    container_name: logback-nginx
+    image: nginx:1.13
+    restart: always
+    ports:
+      - "80:80"
+#    - 443:443
+    volumes:
+    - ./nginx/conf.d:/etc/nginx/conf.d
+
   mysqldb:
     image: mysql:5.7
     container_name: mysqldb
@@ -8,16 +18,18 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: dbperson
+
   redis:
     image: "redis:alpine"
     container_name: redisdb
     ports:
       - "6379:6379"
+
   logback:
+    container_name: logback
     build: .
     restart: always
-    ports:
-       - "80:80"
     depends_on:
       - mysqldb
       - redis
+      - nginx
