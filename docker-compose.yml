@@ -25,9 +25,18 @@ services:
     ports:
       - "6379:6379"
 
-  logback:
-    container_name: logback
-    build: .
+  logback-1:
+    container_name: logback-1
+    build: ./docker-app-1
+    restart: always
+    depends_on:
+      - mysqldb
+      - redis
+      - nginx
+
+  logback-2:
+    container_name: logback-2
+    build: ./docker-app-1
     restart: always
     depends_on:
       - mysqldb
