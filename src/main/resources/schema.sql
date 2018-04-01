@@ -10,7 +10,8 @@ create table UserConnection (userId varchar(255) not null,
                              secret varchar(512),
                              refreshToken varchar(512),
                              expireTime bigint,
-  primary key (userId, providerId, providerUserId));
+  primary key (userId, providerId, providerUserId))
+  ENGINE=InnoDB DEFAULT CHARSET=utf8;
 create unique index UserConnectionRank on UserConnection(userId, providerId, rank);
 
 DROP TABLE IF EXISTS `persistent_logins`;
