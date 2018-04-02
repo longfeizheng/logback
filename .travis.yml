@@ -1,0 +1,5 @@
+language: java
+
+script:
+  - mvn clean package -DskipTests=true
+
