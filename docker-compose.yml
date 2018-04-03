@@ -27,7 +27,7 @@ services:
 
   logback-1:
     container_name: logback-1
-    build: ./docker-app-1
+    build: .
     restart: always
     depends_on:
       - mysqldb
@@ -36,7 +36,7 @@ services:
 
   logback-2:
     container_name: logback-2
-    build: ./docker-app-1
+    build: .
     restart: always
     depends_on:
       - mysqldb
