@@ -147,6 +147,19 @@ public class SysUser implements Serializable, SocialUserDetails {
     }
 
     @Override
+    public int hashCode() {
+        return username.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object rhs) {
+        if (rhs instanceof SysUser) {
+            return username.equals(((SysUser) rhs).username);
+        }
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "SysUser{" +
                 "id='" + id + '\'' +
