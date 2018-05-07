@@ -111,6 +111,11 @@ public class SysUser implements Serializable, SocialUserDetails {
      */
     private String delFlag;
 
+    /**
+     * 手机号
+     */
+    private String mobile;
+
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "sys_role_user", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private List<SysRole> roles = new ArrayList<>();

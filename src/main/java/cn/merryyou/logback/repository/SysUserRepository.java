@@ -16,4 +16,7 @@ public interface SysUserRepository extends MerryyouRepository<SysUser> {
      * @return
      */
     SysUser findByUsername(String username);
+
+    SysUser findByMobile(String mobile);
+
 }

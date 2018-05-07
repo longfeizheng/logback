@@ -34,6 +34,7 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
 
     /**
      * 从数据库查询用户信息
+     *
      * @param username
      * @return
      * @throws UsernameNotFoundException
@@ -49,11 +50,21 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
             log.info(permissions);
             return new SysUser(username, user.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
         }
-        return new SysUser(username, "", AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
+
+        if (user == null) {
+            user = repository.findByMobile(username);
+            if (user != null) {
+                permissions = sysMenuService.getPermissions(user.getUsername());
+                log.info(permissions);
+                return new SysUser(user.getUsername(), user.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
+            }
+        }
+        return new SysUser();
     }
 
     /**
      * 社交登录查询用户信息
+     *
      * @param userId
      * @return
      * @throws UsernameNotFoundException

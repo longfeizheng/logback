@@ -1,5 +1,6 @@
 package cn.merryyou.logback.authentication.mobile;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.Authentication;
@@ -24,7 +25,7 @@ public class SmsCodeAuthenticationProvider implements AuthenticationProvider {
         //调用自定义的userDetailsService认证
         UserDetails user = userDetailsService.loadUserByUsername((String) authenticationToken.getPrincipal());
 
-        if (user == null) {
+        if (user == null || StringUtils.isEmpty(user.getUsername())) {
             throw new InternalAuthenticationServiceException("无法获取用户信息");
         }
         //如果user不为空重新构建SmsCodeAuthenticationToken（已认证）
@@ -37,6 +38,7 @@ public class SmsCodeAuthenticationProvider implements AuthenticationProvider {
 
     /**
      * 只有Authentication为SmsCodeAuthenticationToken使用此Provider认证
+     *
      * @param authentication
      * @return
      */

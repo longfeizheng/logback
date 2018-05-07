@@ -36,4 +36,4 @@ INSERT INTO `sys_role_menu` VALUES ('2619a672e53811e7b983201a068c6482', 'ff015ea
 INSERT INTO `sys_role_user` VALUES ('acfc0e9232f54732a5d9ffe9071bf572', '0ea934e5e55411e7b983201a068c6482');
 INSERT INTO `sys_role_user` VALUES ('acfc0e9232f54732a5d9ffe9071bf572', '2619a672e53811e7b983201a068c6482');
 
-INSERT INTO `sys_user` VALUES ('acfc0e9232f54732a5d9ffe9071bf572', 'admin', '$2a$10$NhM6ZszixLwo9x6igGpsiOyA73ABKyVTgIoUpj8GdDkUoCYc.pEWi', '24', 'test@qq.com', null, '管理员', null, null, null, '2018-02-27 20:41:11', null);
+INSERT INTO `sys_user` VALUES ('acfc0e9232f54732a5d9ffe9071bf572', 'admin', '$2a$10$NhM6ZszixLwo9x6igGpsiOyA73ABKyVTgIoUpj8GdDkUoCYc.pEWi', '24', 'test@qq.com', null, '管理员', null, null, null, '2018-02-27 20:41:11', null,'18512345678');
