@@ -44,20 +44,11 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
         log.info("【MyUserDetailsService】 loadUserByUsername 表单登录用户名  username={}", username);
         String permissions = "";
 
-        SysUser user = repository.findByUsername(username);
+        SysUser user = repository.findByUsernameOrMobile(username, username);
         if (user != null) {
-            permissions = sysMenuService.getPermissions(username);
+            permissions = sysMenuService.getPermissions(user.getUsername());
             log.info(permissions);
-            return new SysUser(username, user.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
-        }
-
-        if (user == null) {
-            user = repository.findByMobile(username);
-            if (user != null) {
-                permissions = sysMenuService.getPermissions(user.getUsername());
-                log.info(permissions);
-                return new SysUser(user.getUsername(), user.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
-            }
+            return new SysUser(user.getUsername(), user.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
         }
         return new SysUser();
     }

@@ -105,7 +105,11 @@ public class SysUserRepositoryTest {
         log.info(sysUser.toString());
     }
 
-    public void findByIdTest() throws Exception{
-
+    @Test
+    public void findByUsernameOrMobileTest() throws Exception{
+//        SysUser user = repository.findByUsernameOrMobile("admin","");
+//        SysUser user = repository.findByUsernameOrMobile("","18512345678");
+        SysUser user = repository.findByUsernameOrMobile("18512345678","18512345678");
+        log.info("【SysUser】 SysUser={}", user);
     }
 }
