@@ -84,7 +84,7 @@ CREATE TABLE `sys_user` (
   `create_date` datetime DEFAULT NULL,
   `update_date` datetime DEFAULT NULL,
   `del_flag` varchar(4) DEFAULT NULL,
-  `mobile` varchar(20) NOT NULL,
+  `mobile` varchar(20) DEFAULT NULL,
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
