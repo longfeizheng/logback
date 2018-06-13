@@ -41,7 +41,7 @@ public class SysUserRepositoryTest {
      */
     @Test
     public void findOneTest() throws Exception {
-        SysUser user = repository.findOne("acfc0e9232f54732a5d9ffe9071bf572");
+        SysUser user = repository.findById("acfc0e9232f54732a5d9ffe9071bf572").get();
         log.info("【SysUser】 SysUser={}", user);
     }
 
@@ -52,7 +52,7 @@ public class SysUserRepositoryTest {
      */
     @Test
     public void findRolesByUser() throws Exception {
-        SysUser user = repository.findOne("acfc0e9232f54732a5d9ffe9071bf572");
+        SysUser user = repository.findById("acfc0e9232f54732a5d9ffe9071bf572").get();
         List<SysRole> roles = user.getRoles();
         for (SysRole role : roles) {
             log.info(role.toString());
@@ -67,7 +67,7 @@ public class SysUserRepositoryTest {
      */
     @Test
     public void findUserByRole() throws Exception {
-        SysRole sysRole = roleRepository.findOne("0ea934e5e55411e7b983201a068c6482");
+        SysRole sysRole = roleRepository.findById("0ea934e5e55411e7b983201a068c6482").get();
         List<SysUser> users = sysRole.getUsers();
         for (SysUser user : users) {
             log.info(user.toString());
@@ -93,8 +93,8 @@ public class SysUserRepositoryTest {
      */
     @Test
     public void saveSysUserTest() throws Exception {
-        SysRole sysRole1 = roleRepository.findOne("0ea934e5e55411e7b983201a068c6482");
-        SysRole sysRole2 = roleRepository.findOne("2619a672e53811e7b983201a068c6482");
+        SysRole sysRole1 = roleRepository.findById("0ea934e5e55411e7b983201a068c6482").get();
+        SysRole sysRole2 = roleRepository.findById("2619a672e53811e7b983201a068c6482").get();
         SysUser user = new SysUser();
         user.setUsername("test");
         user.setPassword(bCryptPasswordEncoder.encode("123456"));

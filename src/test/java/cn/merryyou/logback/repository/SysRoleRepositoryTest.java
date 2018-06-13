@@ -30,13 +30,13 @@ public class SysRoleRepositoryTest {
 
     @Test
     public void findOneTest() throws Exception {
-        SysRole role = sysRoleRepository.findOne("2619a672e53811e7b983201a068c6482");
+        SysRole role = sysRoleRepository.findById("2619a672e53811e7b983201a068c6482").get();
         log.info("【SysRole】 role={}", role);
     }
 
     @Test
     public void findMenuByRole() throws Exception {
-        SysRole role = sysRoleRepository.findOne("2619a672e53811e7b983201a068c6482");
+        SysRole role = sysRoleRepository.findById("2619a672e53811e7b983201a068c6482").get();
         List<SysMenu> menus = role.getMenus();
         for (SysMenu sysMenu : menus) {
             log.info(sysMenu.toString());

@@ -69,7 +69,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public UserDto findOne(String id) {
 
-        SysUser sysUser = userRepository.findOne(id);
+        SysUser sysUser = userRepository.findById(id).get();
         if (sysUser != null) {
             UserDto userDto = new UserDto();
             BeanUtils.copyProperties(sysUser, userDto);
@@ -97,7 +97,7 @@ public class SysUserServiceImpl implements SysUserService {
         List<SysRole> roleList = new ArrayList<>();
         SysRole sysRole;
         for (String str : roles.split(",")) {
-            sysRole = roleRepository.findOne(str);
+            sysRole = roleRepository.findById(str).get();
             roleList.add(sysRole);
         }
         SysUser sysUser = new SysUser();
@@ -114,7 +114,7 @@ public class SysUserServiceImpl implements SysUserService {
         if (StringUtils.isEmpty(ids)) return ResultUtil.error(ResultEnum.FAIL.getCode(), "请选择要删除的行！");
         String[] userIds = ids.split(",");
         for (String id : userIds) {
-            userRepository.delete(id);
+            userRepository.deleteById(id);
         }
         return ResultUtil.success("删除成功！");
     }

@@ -21,7 +21,7 @@ public abstract class MerryyouBaseServiceImpl<T> implements MerryyouBaseService<
 
     @Override
     public T findOne(String id) {
-        return (T)merryyouRepository.findOne(id);
+        return (T)merryyouRepository.findById(id).get();
     }
 
     @Override
@@ -41,6 +41,6 @@ public abstract class MerryyouBaseServiceImpl<T> implements MerryyouBaseService<
 
     @Override
     public void delete(String id) {
-        merryyouRepository.delete(id);
+        merryyouRepository.deleteById(id);
     }
 }

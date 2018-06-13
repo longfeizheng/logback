@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MyConnectionSignUp implements ConnectionSignUp {
-    @Override
+
     public String execute(Connection<?> connection) {
         //根据社交用户信息，默认创建用户并返回用户唯一标识
         return connection.getDisplayName();

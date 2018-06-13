@@ -38,7 +38,7 @@ public class PersonRepositoryTest {
 
     @Test
     public void findOne() {
-        Person person = repository.findOne(1);
+        Person person = repository.findById(1).get();
         log.info("【person】 person={}",person);
     }
 
@@ -50,7 +50,7 @@ public class PersonRepositoryTest {
 
     @Test
     public void update() {
-        Person person = repository.findOne(1);
+        Person person = repository.findById(1).get();
         person.setAddress("city");
         Person resultPerson = repository.save(person);
         Assert.assertNotNull(resultPerson);

@@ -63,7 +63,7 @@ public class SysRoleServiceImpl extends MerryyouBaseServiceImpl<SysRole> impleme
         String menuIds = roleDtoList.get(0).getMenuIds();
         if (StringUtils.isEmpty(menuIds)) return ResultUtil.error(ResultEnum.FAIL.getCode(), "请选择角色对应的权限！");
         for (String str : menuIds.split(",")) {
-            sysMenu = menuRepository.findOne(str);
+            sysMenu = menuRepository.findById(str).get();
             sysRole.getMenus().add(sysMenu);
         }
         roleRepository.save(sysRole);
@@ -72,7 +72,7 @@ public class SysRoleServiceImpl extends MerryyouBaseServiceImpl<SysRole> impleme
 
     @Override
     public RoleDto findRole(String id) {
-        SysRole sysRole = roleRepository.findOne(id);
+        SysRole sysRole = roleRepository.findById(id).get();
         String menuIds = "";
         List<SysMenu> menus = sysRole.getMenus();
         for (SysMenu sysMenu : menus) {
@@ -94,7 +94,7 @@ public class SysRoleServiceImpl extends MerryyouBaseServiceImpl<SysRole> impleme
             if (users != null && users.size() > 0) {
                 return ResultUtil.success("选择的角色已绑定用户！");
             }
-            roleRepository.delete(id);
+            roleRepository.deleteById(id);
         }
 
         return ResultUtil.success("删除成功！");

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class Task {
 
-    //@Scheduled(cron = "0/10 * * * * ? ")
+//    @Scheduled(cron = "* 0/1 * * * ? ")
     public void cron() throws Exception{
         log.info("定时任务执行中。。。。");
     }

@@ -4,6 +4,7 @@ import cn.merryyou.logback.domain.SysUser;
 import cn.merryyou.logback.repository.SysUserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -49,8 +50,9 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
             permissions = sysMenuService.getPermissions(user.getUsername());
             log.info(permissions);
             return new SysUser(user.getUsername(), user.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
+        }else{
+            throw new BadCredentialsException("用户名不存在！");
         }
-        return new SysUser();
     }
 
     /**

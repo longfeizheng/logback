@@ -41,6 +41,8 @@ public class MerryyouAuthenticationfailureHandler extends SimpleUrlAuthenticatio
             response.getWriter().write(objectMapper.writeValueAsString(ResultUtil.error(ResultEnum.FAIL.getCode(), message)));
         }else if(exception instanceof ValidateCodeException){
             response.getWriter().write(objectMapper.writeValueAsString(ResultUtil.error(ResultEnum.CODE_ERROT.getCode(), exception.getMessage())));
+        }else{
+            response.getWriter().write(objectMapper.writeValueAsString(ResultUtil.error(ResultEnum.FAIL.getCode(), exception.getMessage())));
         }
 
     }

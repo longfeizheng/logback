@@ -37,11 +37,11 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person findOne(Integer id) {
-        return repository.findOne(id);
+        return repository.findById(id).get();
     }
 
     @Override
     public void delete(Integer id) {
-        repository.delete(id);
+        repository.deleteById(id);
     }
 }
