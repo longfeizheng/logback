@@ -4,6 +4,8 @@ spring:
     url: jdbc:mysql://localhost:3306/dbperson?useUnicode=true&characterEncoding=UTF-8
     username: root
     password: admin
+    platform: mysql
+    initialization-mode: always
   redis:
     host: 127.0.0.1
     port: 6379
