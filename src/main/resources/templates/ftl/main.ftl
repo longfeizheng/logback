@@ -28,6 +28,9 @@
 <div id="layout1" class="mini-layout" style="width:100%;height:100%;">
     <div class="header" region="north" height="70" showSplit="false" showHeader="false">
         <h1 style="margin:0;padding:15px;cursor:default;font-family:'Trebuchet MS',Arial,sans-serif;">${username!''}</h1>
+        <div style="position:absolute;top:18px;right:10px;">
+            <a class="mini-button mini-button-iconTop" iconCls="icon-close" href="${re.contextPath}/signOut"  plain="true" >关闭</a>
+        </div>
     </div>
     <div title="south" region="south" showSplit="false" showHeader="false" height="30" >
         <div style="line-height:28px;text-align:center;cursor:default">Copyright © https://longfeizheng.github.io </div>
