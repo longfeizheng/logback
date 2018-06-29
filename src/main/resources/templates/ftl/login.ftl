@@ -31,7 +31,7 @@
                 <div class="ececk_warning"><span>密码不能为空</span></div>
                 <div class="form_text_ipt">
                     <input style="width: 150px;" name="imageCode" type="text" placeholder="验证码" onkeydown="keyDown()">
-                    <img src="/code/image" onclick="javascript:this.src='/code/image?random='+Math.random()">
+                    <img src="/code/image" id="codeImage" onclick="javascript:this.src='/code/image?random='+Math.random()">
                 </div>
                 <div class="ececk_warning"><span>验证码不能为空</span></div>
                 <div class="_warning"><span id="span_msg"></span></div>
@@ -86,6 +86,8 @@
                 success: function (data) {
                     if (data.code === -2 || data.code === 103) {
                         $("#span_msg").text(data.msg);
+                        // 刷新验证码
+                        $("#codeImage").attr("src",'/code/image?random='+Math.random());
                     } else {
                         window.location.href = "${re.contextPath}/";
                     }
