@@ -13,7 +13,7 @@ import org.springframework.web.servlet.View;
 
 /**
  * Created on 2018/1/8 0008.
- *
+ * qq配置类，这里添加appID,appSecret
  * @author zlf
  * @email i@merryyou.cn
  * @since 1.0

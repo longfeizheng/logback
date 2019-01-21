@@ -12,7 +12,7 @@ import java.nio.charset.Charset;
 
 /**
  * Created on 2018/1/8 0008.
- *
+ * 处理qq返回的令牌信息
  * @author zlf
  * @email i@merryyou.cn
  * @since 1.0
@@ -28,7 +28,7 @@ public class QQOAuth2Template extends OAuth2Template {
     protected AccessGrant postForAccessGrant(String accessTokenUrl, MultiValueMap<String, String> parameters) {
         String responseStr = getRestTemplate().postForObject(accessTokenUrl, parameters, String.class);
 
-        log.info("【QQOAuth2Template】获取accessToke的响应：responseStr={}" + responseStr);
+        log.info("【QQOAuth2Template】获取accessToke的响应：responseStr={}", responseStr);
 
         String[] items = StringUtils.splitByWholeSeparatorPreserveAllTokens(responseStr, "&");
         //http://wiki.connect.qq.com/使用authorization_code获取access_token

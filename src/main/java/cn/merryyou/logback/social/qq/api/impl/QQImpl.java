@@ -10,7 +10,7 @@ import org.springframework.social.oauth2.TokenStrategy;
 
 /**
  * Created on 2018/1/8 0008.
- *
+ * 实现返回用户信息接口
  * @author zlf
  * @email i@merryyou.cn
  * @since 1.0

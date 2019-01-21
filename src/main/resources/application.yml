@@ -5,7 +5,7 @@ server:
       timeout: 1800s
 spring:
   profiles:
-    active: prod
+    active: dev
   jpa:
     show-sql: true
     properties:

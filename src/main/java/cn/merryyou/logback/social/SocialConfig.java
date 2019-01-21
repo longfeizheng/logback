@@ -22,7 +22,7 @@ import javax.sql.DataSource;
  * Created on 2018/1/8 0008.
  *
  * @author zlf
- * @email i@merryyou.cn
+ * @email
  * @since 1.0
  */
 @Configuration
@@ -43,6 +43,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
      */
     @Bean
     public SpringSocialConfigurer merryyouSocialSecurityConfig() {
+        // 拦截登录的地址
         String filterProcessesUrl = SecurityConstants.DEFAULT_SOCIAL_PROCESS_URL;
         MerryyouSpringSocialConfigurer configurer = new MerryyouSpringSocialConfigurer(filterProcessesUrl);
         return configurer;
@@ -52,9 +53,9 @@ public class SocialConfig extends SocialConfigurerAdapter {
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
         JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(dataSource,
                 connectionFactoryLocator, Encryptors.noOpText());
-//        if (myConnectionSignUp != null) {
-//            repository.setConnectionSignUp(myConnectionSignUp);
-//        }
+        if (myConnectionSignUp != null) {
+            repository.setConnectionSignUp(myConnectionSignUp);
+        }
         return repository;
     }
 

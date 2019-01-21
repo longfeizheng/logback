@@ -49,12 +49,12 @@ public interface SecurityConstants {
     String DEFAULT_SOCIAL_WEIXIN_APP_SECRET = "66bb4566de776ac699ec1dbed0cc3dd1";
 
     /**
-     * qq appID
+     * qq appID 这个要修改
      */
     String DEFAULT_SOCIAL_QQ_APP_ID = "101448999";
 
     /**
-     * qq appsECRET
+     * qq appsECRET 这个要修改
      */
     String DEFAULT_SOCIAL_QQ_APP_SECRET = "1d958787a87559bad371c0a9e26eef61";
 

@@ -9,7 +9,7 @@ import org.springframework.social.connect.UserProfile;
 /**
  * qq返回的信息为spring social提供的适配器
  * Created on 2018/1/8 0008.
- *
+ * 适配spring Social默认的返回信息
  * @author zlf
  * @email i@merryyou.cn
  * @since 1.0

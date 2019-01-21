@@ -88,4 +88,6 @@ public class QQUserInfo {
      * 标识是否为年费黄钻用户（0：不是； 1：是）
      */
     private String is_yellow_year_vip;
+
+    private String constellation; // 新增加的
 }

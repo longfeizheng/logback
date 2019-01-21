@@ -7,7 +7,7 @@ import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
 /**
  * http://wiki.connect.qq.com/%E4%BD%BF%E7%94%A8authorization_code%E8%8E%B7%E5%8F%96access_token
  * Created on 2018/1/8 0008.
- *
+ * 连接服务提供商
  * @author zlf
  * @email i@merryyou.cn
  * @since 1.0

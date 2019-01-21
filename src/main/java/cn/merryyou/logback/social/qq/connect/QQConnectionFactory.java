@@ -5,7 +5,7 @@ import org.springframework.social.connect.support.OAuth2ConnectionFactory;
 
 /**
  * Created on 2018/1/8 0008.
- *
+ * 连接服务提供商的工厂类
  * @author zlf
  * @email i@merryyou.cn
  * @since 1.0

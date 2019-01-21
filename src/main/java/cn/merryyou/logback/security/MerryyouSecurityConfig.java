@@ -32,7 +32,7 @@ import javax.sql.DataSource;
 
 /**
  * Created on 2018/1/4.
- *
+ * 开启SocialAuthenticationFilter过滤器
  * @author zlf
  * @since 1.0
  */
