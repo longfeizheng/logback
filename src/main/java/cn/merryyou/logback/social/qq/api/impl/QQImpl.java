@@ -2,6 +2,7 @@ package cn.merryyou.logback.social.qq.api.impl;
 
 import cn.merryyou.logback.social.qq.api.QQ;
 import cn.merryyou.logback.social.qq.api.QQUserInfo;
+import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -61,7 +62,8 @@ public class QQImpl extends AbstractOAuth2ApiBinding implements QQ {
 
         QQUserInfo userInfo = null;
         try {
-            userInfo = objectMapper.readValue(result, QQUserInfo.class);
+//            userInfo = objectMapper.readValue(result, QQUserInfo.class);
+            userInfo = JSONObject.parseObject(result, QQUserInfo.class);
             userInfo.setOpenId(openId);
             return userInfo;
         } catch (Exception e) {
