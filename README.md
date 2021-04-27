@@ -39,8 +39,7 @@
 ---
 [![https://niocoder.com/assets/images/qrcode.jpg](https://niocoder.com/assets/images/qrcode.jpg "https://niocoder.com/assets/images/qrcode.jpg")](https://niocoder.com/assets/images/qrcode.jpg "https://niocoder.com/assets/images/qrcode.jpg")
 
-> 🙂🙂🙂关注微信公众号**java干货**
-不定期分享干货资料
+> 微信公众号**java干货**
 
 ## Start统计
 
